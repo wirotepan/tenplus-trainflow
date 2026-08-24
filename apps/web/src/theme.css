@@ -1,0 +1,88 @@
+/**
+ * TrainFlow — Design system (LOCKED): variant B "Soft SaaS" (teal)
+ * ยกมาจาก DCS-TMS (`apps/web/src/theme.css`) ทั้งชุด — token เดิม ค่าเดิม ไม่แก้สี/มุม/เงา
+ * ต้นแบบภาพ: docs/trainflow-prototype.html · อ้างอิงเดิม: docs/spec/tms-prototype-reference.html
+ * หน้าเว็บ React ทุกหน้าใช้ token เหล่านี้ — สี/มุม/เงา/ฟอนต์ มาจากที่นี่ที่เดียว
+ *
+ * กติกาสำคัญ: สี "สถานะ/แจ้งเตือน" (--st-*, --alert) แยกจาก --accent
+ * ห้ามเอา accent (teal) ไปแทนสีสถานะ แดง/เหลือง/เขียว/น้ำเงิน
+ *
+ * ความหมายของสถานะใน TrainFlow (ชื่อ token คงเดิมจาก TMS เพื่อให้ยก component มาใช้ได้ตรง ๆ):
+ *   --st-run    (น้ำเงิน) = กำลังอบรม · กำลังดำเนินการ        [IN_PROGRESS]
+ *   --st-wait   (แดง)     = รอวิทยากรยืนยัน · ไม่ผ่านเกณฑ์ · เลยกำหนด
+ *   --st-unload (เหลือง)  = จองชั่วคราว (Tentative) · ยังไม่ครบ · รอตรวจ
+ *   --st-done   (เขียว)   = ยืนยันแล้ว · ผ่าน · ออกวุฒิบัตรแล้ว · ปิดงาน
+ *   --st-idle   (เทา)     = ร่าง · ยกเลิก · ไม่มีข้อมูล
+ */
+
+:root {
+  /* fonts + spacing */
+  --font-ui: "Sarabun", "Noto Sans Thai", "Leelawadee UI", Tahoma, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-data: ui-monospace, "SF Mono", "Cascadia Mono", Consolas, "Sarabun", monospace;
+  --font: var(--font-ui);
+  --num-font: var(--font-ui);
+  --sp: 8px;
+  --dur: .18s;
+
+  /* variant B shape language: มุมมน, เงานุ่ม, เส้นบาง */
+  --radius: 16px;
+  --radius-sm: 10px;
+  --bw: 1px;
+  --shadow: 0 1px 2px var(--shadow-c1), 0 10px 30px -14px var(--shadow-c2);
+  --label-tt: none;
+  --label-ls: .01em;
+}
+
+/* ---------- STATUS + ALERT tokens (แยกจาก accent, ต่อ theme) ---------- */
+:root, :root[data-theme="light"] {
+  --st-run: #2563EB;    --st-run-bg: #DBEAFE;    --st-run-fg: #1E40AF;   /* วิ่ง */
+  --st-wait: #DC2626;   --st-wait-bg: #FEE2E2;   --st-wait-fg: #991B1B;  /* รอลง (แดง) */
+  --st-unload: #D97706; --st-unload-bg: #FEF3C7; --st-unload-fg: #92400E;/* กำลังลง (เหลือง) */
+  --st-done: #16A34A;   --st-done-bg: #DCFCE7;   --st-done-fg: #166534;  /* เสร็จ/ว่าง (เขียว) */
+  --st-idle: #64748B;   --st-idle-bg: #EEF1F5;   --st-idle-fg: #475569;  /* ไม่รายงาน */
+  --alert: #DC2626;     --alert-bg: #FEE2E2;     --alert-fg: #991B1B;
+  --focus: #2563EB;
+}
+:root[data-theme="dark"] {
+  --st-run: #60A5FA;    --st-run-bg: rgba(59,130,246,.18);  --st-run-fg: #93C5FD;
+  --st-wait: #F87171;   --st-wait-bg: rgba(239,68,68,.18);  --st-wait-fg: #FCA5A5;
+  --st-unload: #FBBF24; --st-unload-bg: rgba(217,119,6,.20);--st-unload-fg: #FCD34D;
+  --st-done: #4ADE80;   --st-done-bg: rgba(22,163,74,.20);  --st-done-fg: #86EFAC;
+  --st-idle: #94A3B8;   --st-idle-bg: rgba(148,163,184,.15);--st-idle-fg: #CBD5E1;
+  --alert: #F87171;     --alert-bg: rgba(239,68,68,.16);    --alert-fg: #FCA5A5;
+  --focus: #60A5FA;
+}
+
+/* ---------- NEUTRALS + ACCENT (variant B, teal) ---------- */
+:root, :root[data-theme="light"] {
+  --bg: #FFFFFF; --surface: #FFFFFF; --surface-2: #F4F7F6; --surface-3: #EBF1EF;
+  --border: #E4EBE9; --border-strong: #CBD8D4;
+  --text: #152420; --text-dim: #586C66; --text-faint: #88A099;
+  --accent: #0E8C82; --accent-fg: #FFFFFF; --accent-weak: #DCF0ED; --accent-line: #0E8C82;
+  --shadow-c1: rgba(20,40,35,.05); --shadow-c2: rgba(20,50,44,.16);
+}
+:root[data-theme="dark"] {
+  --bg: #0F1917; --surface: #17231F; --surface-2: #1E2C28; --surface-3: #263832;
+  --border: #28382F; --border-strong: #3A4E45;
+  --text: #E8F0ED; --text-dim: #96AAA3; --text-faint: #688079;
+  --accent: #34C6BC; --accent-fg: #06201D; --accent-weak: rgba(52,198,188,.14); --accent-line: #34C6BC;
+  --shadow-c1: rgba(0,0,0,.28); --shadow-c2: rgba(0,0,0,.5);
+}
+
+/* honor OS dark preference when no explicit data-theme is set */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    --st-run: #60A5FA;    --st-run-bg: rgba(59,130,246,.18);  --st-run-fg: #93C5FD;
+    --st-wait: #F87171;   --st-wait-bg: rgba(239,68,68,.18);  --st-wait-fg: #FCA5A5;
+    --st-unload: #FBBF24; --st-unload-bg: rgba(217,119,6,.20);--st-unload-fg: #FCD34D;
+    --st-done: #4ADE80;   --st-done-bg: rgba(22,163,74,.20);  --st-done-fg: #86EFAC;
+    --st-idle: #94A3B8;   --st-idle-bg: rgba(148,163,184,.15);--st-idle-fg: #CBD5E1;
+    --alert: #F87171;     --alert-bg: rgba(239,68,68,.16);    --alert-fg: #FCA5A5;
+    --focus: #60A5FA;
+    --bg: #0F1917; --surface: #17231F; --surface-2: #1E2C28; --surface-3: #263832;
+    --border: #28382F; --border-strong: #3A4E45;
+    --text: #E8F0ED; --text-dim: #96AAA3; --text-faint: #688079;
+    --accent: #34C6BC; --accent-fg: #06201D; --accent-weak: rgba(52,198,188,.14); --accent-line: #34C6BC;
+    --shadow-c1: rgba(0,0,0,.28); --shadow-c2: rgba(0,0,0,.5);
+  }
+}

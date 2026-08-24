@@ -20,6 +20,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - ✅ **เฟส 2 system design** → [`docs/02-system-design.md`](docs/02-system-design.md)
   (ออกครบทั้ง 16 ขั้นในรอบเดียว: ER · **สายข้อมูลข้ามหน้าจอ §3** · state machine · BR-01..20 · API · exception · multi-tenant)
 - ✅ git repo + remote `git@github.com:wirotepan/tenplus-trainflow.git`
+- ✅ **UI/UX theme ยกจาก dcs-tms ทั้งชุด** → `apps/web/src/theme.css` (variant B "Soft SaaS" teal, LOCKED)
+  · ต้นแบบภายใน `docs/trainflow-prototype.html` · **ฉบับส่งลูกค้า** `docs/trainflow-prototype-customer.html`
+  (ถอดการอ้างอิงถึง dcs-tms ออกหมด — คนละบริษัทกัน) · อ้างอิงเดิม `docs/spec/tms-prototype-reference.html`
 - ⬜ ยังไม่มี: scaffold monorepo, contract files (`openapi.yaml`, `prisma/schema.prisma`, shared-types)
 - ⏭️ **ถัดไป:** ผู้ใช้รีวิวเฟส 1–2 → **ตอบคำถาม 🔴 Q1–Q4** (`01-requirements.md` §7) → เริ่ม **M0**
   (git + monorepo + contract 3 ไฟล์ + CI + `npm run check`). **ห้ามเริ่ม migration แรกก่อนได้คำตอบ Q1–Q4**
@@ -193,6 +196,10 @@ CI (`.github/workflows/ci.yml`) ต้องรัน `typecheck + prisma:valida
 - **2026-08-24 · Multi-tenant:** ทำตั้งแต่ M1 เพราะเป้าหมายคือขยายเป็น SaaS ให้บริษัทฝึกอบรมอื่นใช้.
 - **2026-08-24 · Finance ผูกกับ Job:** รายได้/ต้นทุน/กำไรผูกกับ **Training Job No.** เป็นแกน
   (ไม่ผูกกับหลักสูตรหรือรอบ) — เพื่อให้ตอบได้ว่างานไหนกำไร.
+- **2026-08-24 · Design system (LOCKED):** ยก **variant B "Soft SaaS" (teal)** จาก dcs-tms มาทั้งชุด
+  — accent `#0E8C82` (light) / `#34C6BC` (dark), มุมมน 16px, เงานุ่ม, ฟอนต์ Sarabun.
+  SSOT อยู่ที่ `apps/web/src/theme.css` ที่เดียว. **กติกา: สีสถานะ (`--st-*`, `--alert`) แยกจาก `--accent` เสมอ**
+  — ห้ามเอา teal ไปแทนสีสถานะ. ความหมายสถานะของ TrainFlow แมปไว้ในหัวไฟล์ theme.css แล้ว.
 - **2026-08-24 · Certificate:** เลข certificate + **QR verify เป็น public endpoint ไม่ต้อง login**
   (คนนอก/ลูกค้าต้องตรวจสอบวุฒิบัตรได้) — แต่ต้องเปิดเผยเฉพาะข้อมูลที่จำเป็น.
 

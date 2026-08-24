@@ -1,0 +1,981 @@
+<!DOCTYPE html>
+<html lang="th" data-theme="light" data-variant="a">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FleetLine · ระบบจ่ายรถ (TMS)</title>
+<style>
+/* ============================================================
+   FleetLine TMS — self-contained prototype
+   Theme tokens: [data-theme] × [data-variant]
+   กติกาสี: แดง/เหลือง/เขียว = สถานะเท่านั้น (ไม่ใช่สีแบรนด์)
+   ============================================================ */
+
+/* ---------- reset ---------- */
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+button{font:inherit;color:inherit;cursor:pointer;background:none;border:none}
+input,select{font:inherit;color:inherit}
+ul{list-style:none}
+:focus-visible{outline:2px solid var(--focus);outline-offset:2px;border-radius:3px}
+
+/* ---------- base font per variant ---------- */
+:root{
+  --font-ui:"Sarabun","Noto Sans Thai","Leelawadee UI",Tahoma,system-ui,-apple-system,"Segoe UI",sans-serif;
+  --font-data:ui-monospace,"SF Mono","Cascadia Mono",Consolas,"Sarabun",monospace;
+  --sp:8px;
+  --dur:.18s;
+}
+[data-variant="a"]{ --font:var(--font-ui); --radius:4px; --radius-sm:3px; --bw:1px; --shadow:none; --label-tt:none; --label-ls:.02em; --num-font:var(--font-data); }
+[data-variant="b"]{ --font:var(--font-ui); --radius:16px; --radius-sm:10px; --bw:1px; --shadow:0 1px 2px var(--shadow-c1),0 10px 30px -14px var(--shadow-c2); --label-tt:none; --label-ls:.01em; --num-font:var(--font-ui); }
+[data-variant="c"]{ --font:var(--font-ui); --radius:0; --radius-sm:0; --bw:2px; --shadow:none; --label-tt:uppercase; --label-ls:.08em; --num-font:var(--font-ui); }
+
+/* ---------- STATUS tokens (per theme, shared across variants) ---------- */
+[data-theme="light"]{
+  --st-run:#2563EB;   --st-run-bg:#DBEAFE;   --st-run-fg:#1E40AF;
+  --st-wait:#DC2626;  --st-wait-bg:#FEE2E2;  --st-wait-fg:#991B1B;
+  --st-unload:#D97706;--st-unload-bg:#FEF3C7;--st-unload-fg:#92400E;
+  --st-done:#16A34A;  --st-done-bg:#DCFCE7;  --st-done-fg:#166534;
+  --st-idle:#64748B;  --st-idle-bg:#EEF1F5;  --st-idle-fg:#475569;
+  --alert:#DC2626;    --alert-bg:#FEE2E2;    --alert-fg:#991B1B;
+  --focus:#2563EB;
+}
+[data-theme="dark"]{
+  --st-run:#60A5FA;   --st-run-bg:rgba(59,130,246,.18);   --st-run-fg:#93C5FD;
+  --st-wait:#F87171;  --st-wait-bg:rgba(239,68,68,.18);   --st-wait-fg:#FCA5A5;
+  --st-unload:#FBBF24;--st-unload-bg:rgba(217,119,6,.20); --st-unload-fg:#FCD34D;
+  --st-done:#4ADE80;  --st-done-bg:rgba(22,163,74,.20);   --st-done-fg:#86EFAC;
+  --st-idle:#94A3B8;  --st-idle-bg:rgba(148,163,184,.15); --st-idle-fg:#CBD5E1;
+  --alert:#F87171;    --alert-bg:rgba(239,68,68,.16);     --alert-fg:#FCA5A5;
+  --focus:#60A5FA;
+}
+
+/* ---------- NEUTRALS + ACCENT (variant × theme) ---------- */
+/* A · Ops Console */
+[data-variant="a"][data-theme="light"]{
+  --bg:#EBEFF4; --surface:#FFFFFF; --surface-2:#F4F7FA; --surface-3:#EAEFF4;
+  --border:#D2DAE3; --border-strong:#B9C4D0;
+  --text:#17222E; --text-dim:#556474; --text-faint:#8494A4;
+  --accent:#2F6FB0; --accent-fg:#FFFFFF; --accent-weak:#E4EDF6; --accent-line:#2F6FB0;
+  --shadow-c1:rgba(23,34,46,.05); --shadow-c2:rgba(23,34,46,.12);
+}
+[data-variant="a"][data-theme="dark"]{
+  --bg:#0D131A; --surface:#151E28; --surface-2:#1A2530; --surface-3:#22303D;
+  --border:#293849; --border-strong:#3A4C60;
+  --text:#E6ECF3; --text-dim:#94A5B6; --text-faint:#647585;
+  --accent:#5B8FD1; --accent-fg:#0A1017; --accent-weak:rgba(91,143,209,.16); --accent-line:#5B8FD1;
+  --shadow-c1:rgba(0,0,0,.3); --shadow-c2:rgba(0,0,0,.5);
+}
+/* B · Soft SaaS */
+[data-variant="b"][data-theme="light"]{
+  --bg:#F3F7F6; --surface:#FFFFFF; --surface-2:#EEF4F2; --surface-3:#E6EFEC;
+  --border:#E1E9E7; --border-strong:#CBD8D4;
+  --text:#152420; --text-dim:#586C66; --text-faint:#88A099;
+  --accent:#0E8C82; --accent-fg:#FFFFFF; --accent-weak:#DCF0ED; --accent-line:#0E8C82;
+  --shadow-c1:rgba(20,40,35,.05); --shadow-c2:rgba(20,50,44,.16);
+}
+[data-variant="b"][data-theme="dark"]{
+  --bg:#0F1917; --surface:#17231F; --surface-2:#1E2C28; --surface-3:#263832;
+  --border:#28382F; --border-strong:#3A4E45;
+  --text:#E8F0ED; --text-dim:#96AAA3; --text-faint:#688079;
+  --accent:#34C6BC; --accent-fg:#06201D; --accent-weak:rgba(52,198,188,.14); --accent-line:#34C6BC;
+  --shadow-c1:rgba(0,0,0,.28); --shadow-c2:rgba(0,0,0,.5);
+}
+/* C · Industrial */
+[data-variant="c"][data-theme="light"]{
+  --bg:#E3E3DF; --surface:#F5F5F1; --surface-2:#DEDED9; --surface-3:#D3D3CD;
+  --border:#1C1D20; --border-strong:#1C1D20;
+  --text:#131417; --text-dim:#4C4E54; --text-faint:#6E7076;
+  --accent:#EE6A1B; --accent-fg:#131417; --accent-weak:#F6DCC8; --accent-line:#131417;
+  --shadow-c1:transparent; --shadow-c2:transparent;
+}
+[data-variant="c"][data-theme="dark"]{
+  --bg:#0A0A0B; --surface:#141416; --surface-2:#1C1C1F; --surface-3:#26262A;
+  --border:#3A3B41; --border-strong:#55565D;
+  --text:#F2F2ED; --text-dim:#A2A3A8; --text-faint:#77787E;
+  --accent:#FF8A33; --accent-fg:#131417; --accent-weak:rgba(255,138,51,.14); --accent-line:#FF8A33;
+  --shadow-c1:transparent; --shadow-c2:transparent;
+}
+
+/* ---------- shell ---------- */
+body{
+  font-family:var(--font);
+  background:var(--bg); color:var(--text);
+  font-size:14px; line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+  display:flex; flex-direction:column; min-height:100vh;
+  transition:background var(--dur),color var(--dur);
+}
+.num{font-family:var(--num-font);font-variant-numeric:tabular-nums;font-feature-settings:"tnum" 1}
+
+/* ---------- topbar ---------- */
+.topbar{
+  display:flex;align-items:center;gap:16px;
+  padding:0 16px;height:56px;flex:0 0 auto;
+  background:var(--surface);border-bottom:var(--bw) solid var(--border);
+  position:sticky;top:0;z-index:40;
+}
+.brand{display:flex;align-items:center;gap:10px;padding-right:6px}
+.brand-mark{
+  width:30px;height:30px;flex:0 0 auto;border-radius:var(--radius-sm);
+  background:var(--accent);color:var(--accent-fg);
+  display:grid;place-items:center;font-weight:800;font-size:16px;
+}
+[data-variant="c"] .brand-mark{border:var(--bw) solid var(--border)}
+.brand-name{font-weight:800;letter-spacing:var(--label-ls);text-transform:var(--label-tt);font-size:15px}
+.brand-tag{font-size:11px;color:var(--text-faint);letter-spacing:.02em}
+.nav{display:flex;gap:4px;flex:1 1 auto;overflow-x:auto;scrollbar-width:none}
+.nav::-webkit-scrollbar{display:none}
+.nav-btn{
+  display:flex;align-items:center;gap:7px;white-space:nowrap;
+  padding:8px 13px;border-radius:var(--radius-sm);color:var(--text-dim);
+  font-weight:600;font-size:13px;border:var(--bw) solid transparent;
+  transition:background var(--dur),color var(--dur);
+}
+.nav-btn:hover{background:var(--surface-2);color:var(--text)}
+.nav-btn[aria-current="page"]{background:var(--accent-weak);color:var(--accent);border-color:var(--accent-line)}
+[data-variant="c"] .nav-btn[aria-current="page"]{background:var(--accent);color:var(--accent-fg);border-color:var(--border)}
+.nav-ico{width:18px;text-align:center;font-size:15px}
+
+.controls{display:flex;align-items:center;gap:8px;flex:0 0 auto}
+.seg{display:flex;background:var(--surface-2);border:var(--bw) solid var(--border);border-radius:var(--radius-sm);overflow:hidden}
+.seg button{padding:6px 11px;font-size:12px;font-weight:700;color:var(--text-dim);letter-spacing:var(--label-ls)}
+.seg button[aria-pressed="true"]{background:var(--accent);color:var(--accent-fg)}
+.seg button:not(:last-child){border-right:var(--bw) solid var(--border)}
+.icon-btn{
+  width:34px;height:34px;border-radius:var(--radius-sm);
+  border:var(--bw) solid var(--border);background:var(--surface-2);
+  display:grid;place-items:center;font-size:15px;color:var(--text-dim);
+  transition:background var(--dur),color var(--dur);
+}
+.icon-btn:hover{color:var(--text);background:var(--surface-3)}
+.ctl-label{font-size:11px;color:var(--text-faint);text-transform:var(--label-tt);letter-spacing:.04em;font-weight:700;padding-right:2px}
+
+/* ---------- layout ---------- */
+main{flex:1 1 auto;padding:16px;overflow:auto}
+.screen{display:none;animation:fade var(--dur) ease}
+.screen.active{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+.page-head{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;margin-bottom:14px;flex-wrap:wrap}
+.page-title{font-size:19px;font-weight:800;letter-spacing:var(--label-ls)}
+.page-sub{font-size:12.5px;color:var(--text-dim);margin-top:2px}
+
+/* ---------- generic components ---------- */
+.card{background:var(--surface);border:var(--bw) solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow)}
+.eyebrow{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--text-faint)}
+.chip{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:3px 9px;border-radius:999px;font-size:11.5px;font-weight:700;
+  background:var(--surface-2);color:var(--text-dim);border:var(--bw) solid var(--border);
+  white-space:nowrap;
+}
+[data-variant="c"] .chip{border-radius:0}
+.dot{width:8px;height:8px;border-radius:999px;flex:0 0 auto;background:currentColor}
+
+/* status chips */
+.st{border-radius:999px;padding:3px 10px;font-size:11.5px;font-weight:700;display:inline-flex;align-items:center;gap:6px;border:var(--bw) solid transparent}
+[data-variant="c"] .st{border-radius:0}
+.st-run{background:var(--st-run-bg);color:var(--st-run-fg)} .st-run .dot{color:var(--st-run)}
+.st-wait{background:var(--st-wait-bg);color:var(--st-wait-fg)} .st-wait .dot{color:var(--st-wait)}
+.st-unload{background:var(--st-unload-bg);color:var(--st-unload-fg)} .st-unload .dot{color:var(--st-unload)}
+.st-done{background:var(--st-done-bg);color:var(--st-done-fg)} .st-done .dot{color:var(--st-done)}
+.st-idle{background:var(--st-idle-bg);color:var(--st-idle-fg)} .st-idle .dot{color:var(--st-idle)}
+
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:7px;
+  padding:9px 15px;border-radius:var(--radius-sm);font-weight:700;font-size:13px;
+  border:var(--bw) solid var(--border);background:var(--surface-2);color:var(--text);
+  transition:background var(--dur),border-color var(--dur),transform .06s;
+  letter-spacing:var(--label-ls);
+}
+.btn:hover{background:var(--surface-3)}
+.btn:active{transform:translateY(1px)}
+.btn-primary{background:var(--accent);color:var(--accent-fg);border-color:var(--accent-line)}
+.btn-primary:hover{filter:brightness(1.06)}
+.btn-sm{padding:6px 11px;font-size:12px}
+.btn-block{width:100%}
+
+/* ============================================================
+   1 · DISPATCH BOARD
+   ============================================================ */
+.board{display:grid;grid-template-columns:minmax(340px,1fr) minmax(360px,1.1fr);gap:14px;align-items:start}
+.col-head{display:flex;align-items:center;justify-content:space-between;padding:12px 14px;border-bottom:var(--bw) solid var(--border)}
+.col-head h2{font-size:14px;font-weight:800}
+.col-body{padding:12px;display:flex;flex-direction:column;gap:10px;max-height:calc(100vh - 190px);overflow:auto}
+
+.order{border:var(--bw) solid var(--border);border-radius:var(--radius-sm);padding:12px;background:var(--surface-2);transition:border-color var(--dur),background var(--dur)}
+.order:hover{border-color:var(--border-strong)}
+.order.sel{border-color:var(--accent-line);background:var(--accent-weak);box-shadow:inset 0 0 0 1px var(--accent-line)}
+.order.assigned{opacity:.55}
+.order-top{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:8px}
+.order-id{font-weight:800;font-size:13px;font-family:var(--num-font)}
+.order-cust{font-size:13.5px;font-weight:700;margin-bottom:8px}
+.order-meta{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
+.rec{display:flex;align-items:center;gap:8px;background:var(--surface);border:var(--bw) solid var(--border);border-radius:var(--radius-sm);padding:8px 10px;margin-bottom:10px}
+.rec-ico{width:26px;height:26px;border-radius:var(--radius-sm);background:var(--accent-weak);color:var(--accent);display:grid;place-items:center;font-size:14px;flex:0 0 auto}
+.rec-plate{font-weight:800;font-family:var(--num-font);font-size:13px}
+.rec-why{font-size:11px;color:var(--text-dim)}
+.order-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+
+.truck{display:flex;align-items:center;gap:11px;padding:11px 12px;border:var(--bw) solid var(--border);border-radius:var(--radius-sm);background:var(--surface-2)}
+.truck-plate{font-weight:800;font-family:var(--num-font);font-size:13.5px;min-width:64px}
+.truck-mid{flex:1 1 auto;min-width:0}
+.truck-drv{font-size:12.5px;font-weight:600}
+.truck-loc{font-size:11px;color:var(--text-faint);display:flex;align-items:center;gap:5px;margin-top:2px}
+.pulse{width:7px;height:7px;border-radius:999px;background:var(--st-run);box-shadow:0 0 0 0 var(--st-run);animation:pulse 1.8s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--st-run) 60%,transparent)}70%{box-shadow:0 0 0 6px transparent}100%{box-shadow:0 0 0 0 transparent}}
+.live-badge{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;color:var(--st-run-fg)}
+
+/* ============================================================
+   2 · DRIVER PWA (mobile)
+   ============================================================ */
+.phone-wrap{display:flex;justify-content:center;padding:6px}
+.phone{
+  width:100%;max-width:392px;background:var(--surface);
+  border:var(--bw) solid var(--border);border-radius:calc(var(--radius) + 18px);
+  box-shadow:var(--shadow);overflow:hidden;
+}
+[data-variant="c"] .phone{border-radius:0}
+.ph-bar{display:flex;align-items:center;justify-content:space-between;padding:9px 16px;font-size:11px;color:var(--text-faint);border-bottom:var(--bw) solid var(--border);font-family:var(--num-font)}
+.ph-body{padding:16px}
+.ph-hello{font-size:12.5px;color:var(--text-dim)}
+.ph-name{font-size:17px;font-weight:800;margin-bottom:12px}
+.job{border:var(--bw) solid var(--border);border-radius:var(--radius-sm);padding:14px;margin-bottom:14px}
+.job-id{font-family:var(--num-font);font-weight:800;font-size:13px}
+.job-cust{font-size:16px;font-weight:800;margin:6px 0 2px}
+.job-drop{font-size:13px;color:var(--text-dim)}
+.drop-prog{display:flex;gap:6px;margin-top:12px}
+.drop-seg{flex:1;height:6px;border-radius:999px;background:var(--surface-3)}
+.drop-seg.on{background:var(--accent)}
+[data-variant="c"] .drop-seg{border-radius:0}
+
+.now{text-align:center;padding:18px 12px;border-radius:var(--radius-sm);margin-bottom:14px;border:var(--bw) solid transparent;transition:background var(--dur),color var(--dur)}
+.now-label{font-size:12px;font-weight:700;opacity:.85;text-transform:var(--label-tt);letter-spacing:.04em}
+.now-status{font-size:26px;font-weight:900;margin-top:4px;display:flex;align-items:center;justify-content:center;gap:10px}
+.now.s-wait{background:var(--st-wait-bg);color:var(--st-wait-fg)}
+.now.s-unload{background:var(--st-unload-bg);color:var(--st-unload-fg)}
+.now.s-done{background:var(--st-done-bg);color:var(--st-done-fg)}
+.now.s-idle{background:var(--st-idle-bg);color:var(--st-idle-fg)}
+
+.big-btn{
+  width:100%;padding:20px;border-radius:var(--radius-sm);font-size:19px;font-weight:900;
+  color:#fff;border:var(--bw) solid transparent;margin-bottom:10px;
+  display:flex;align-items:center;justify-content:center;gap:12px;
+  transition:transform .07s,filter var(--dur);letter-spacing:var(--label-ls);
+}
+.big-btn:active{transform:scale(.985)}
+.big-btn:hover{filter:brightness(1.05)}
+.big-btn .em{font-size:24px}
+.bb-wait{background:var(--st-wait)} .bb-unload{background:var(--st-unload)} .bb-done{background:var(--st-done)} .bb-idle{background:var(--st-idle)}
+[data-variant="c"] .big-btn{border-color:var(--border)}
+.step-track{display:flex;justify-content:space-between;gap:6px;margin-top:14px}
+.step{flex:1;text-align:center;font-size:10.5px;color:var(--text-faint);font-weight:700}
+.step-dot{width:22px;height:22px;border-radius:999px;margin:0 auto 4px;display:grid;place-items:center;background:var(--surface-3);color:var(--text-faint);font-size:11px;border:var(--bw) solid var(--border)}
+[data-variant="c"] .step-dot{border-radius:0}
+.step.done .step-dot{background:var(--accent);color:var(--accent-fg);border-color:var(--accent-line)}
+.step.done{color:var(--text)}
+.next-job{margin-top:6px;font-size:12px;color:var(--text-dim);padding:10px 12px;border:var(--bw) dashed var(--border);border-radius:var(--radius-sm)}
+
+/* ============================================================
+   3 · EXEC DASHBOARD
+   ============================================================ */
+.kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:14px}
+.kpi{padding:15px 16px}
+.kpi-label{font-size:12px;color:var(--text-dim);font-weight:600;display:flex;align-items:center;gap:7px}
+.kpi-val{font-size:28px;font-weight:900;margin-top:8px;font-family:var(--num-font);letter-spacing:-.01em}
+.kpi-sub{font-size:11.5px;color:var(--text-faint);margin-top:4px}
+.kpi-ico{width:24px;height:24px;border-radius:var(--radius-sm);display:grid;place-items:center;font-size:13px;background:var(--accent-weak);color:var(--accent)}
+.kpi.warn .kpi-ico{background:var(--alert-bg);color:var(--alert-fg)}
+.kpi.warn .kpi-val{color:var(--alert-fg)}
+
+.dash-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:14px;align-items:start}
+.panel{padding:16px}
+.panel h3{font-size:14px;font-weight:800;margin-bottom:14px;display:flex;align-items:center;justify-content:space-between}
+.fleet-bar{display:flex;height:34px;border-radius:var(--radius-sm);overflow:hidden;border:var(--bw) solid var(--border)}
+[data-variant="c"] .fleet-bar{border-radius:0}
+.fleet-seg{display:grid;place-items:center;font-size:11px;font-weight:800;color:#fff;font-family:var(--num-font)}
+.fseg-run{background:var(--st-run)} .fseg-unload{background:var(--st-unload)} .fseg-wait{background:var(--st-wait)} .fseg-idle{background:var(--st-idle)}
+.legend{display:flex;flex-wrap:wrap;gap:14px;margin-top:14px}
+.leg{display:flex;align-items:center;gap:7px;font-size:12px;color:var(--text-dim)}
+.leg .dot{width:10px;height:10px}
+
+.watch{display:flex;flex-direction:column;gap:9px}
+.watch-row{display:flex;align-items:center;gap:11px;padding:11px 12px;border:var(--bw) solid var(--border);border-radius:var(--radius-sm);background:var(--surface-2)}
+.watch-plate{font-family:var(--num-font);font-weight:800;font-size:13px;min-width:60px}
+.watch-mid{flex:1;min-width:0}
+.watch-cust{font-size:12.5px;font-weight:600}
+.watch-reason{font-size:11px;color:var(--text-dim);margin-top:1px}
+
+/* ============================================================
+   4 · COST / PROFIT
+   ============================================================ */
+.cost-grid{display:grid;grid-template-columns:1fr 380px;gap:16px;align-items:start}
+.field{margin-bottom:14px}
+.field label{display:block;font-size:12px;font-weight:700;color:var(--text-dim);margin-bottom:6px;text-transform:var(--label-tt);letter-spacing:var(--label-ls)}
+.input{
+  width:100%;padding:10px 12px;border-radius:var(--radius-sm);
+  border:var(--bw) solid var(--border);background:var(--surface-2);color:var(--text);
+  font-family:var(--num-font);font-size:14px;
+}
+.input:focus{border-color:var(--accent-line)}
+.input-lock{background:var(--surface-3);color:var(--text-dim)}
+.seg-full{display:flex;border:var(--bw) solid var(--border);border-radius:var(--radius-sm);overflow:hidden;margin-bottom:16px}
+.seg-full button{flex:1;padding:11px;font-weight:700;font-size:13px;color:var(--text-dim)}
+.seg-full button[aria-pressed="true"]{background:var(--accent);color:var(--accent-fg)}
+.seg-full button:not(:last-child){border-right:var(--bw) solid var(--border)}
+.extras{display:flex;flex-wrap:wrap;gap:8px}
+.extra{
+  display:inline-flex;align-items:center;gap:8px;padding:8px 12px;
+  border:var(--bw) solid var(--border);border-radius:var(--radius-sm);background:var(--surface-2);
+  font-size:12.5px;font-weight:600;user-select:none;
+}
+.extra[aria-pressed="true"]{border-color:var(--accent-line);background:var(--accent-weak);color:var(--accent)}
+.extra .amt{font-family:var(--num-font);font-weight:800;opacity:.85}
+
+.result{padding:18px;position:sticky;top:72px}
+.res-row{display:flex;align-items:center;justify-content:space-between;padding:9px 0;border-bottom:var(--bw) solid var(--border);font-size:13.5px}
+.res-row:last-of-type{border-bottom:none}
+.res-row .num{font-weight:700}
+.res-total{border-top:var(--bw) solid var(--border-strong);margin-top:4px;padding-top:12px;font-size:15px;font-weight:800}
+.profit-box{margin-top:14px;padding:14px;border-radius:var(--radius-sm);text-align:center;border:var(--bw) solid transparent}
+.profit-box.ok{background:var(--st-done-bg);color:var(--st-done-fg)}
+.profit-box.bad{background:var(--alert-bg);color:var(--alert-fg)}
+.profit-val{font-size:26px;font-weight:900;font-family:var(--num-font)}
+.profit-pct{font-size:13px;font-weight:700;margin-top:2px}
+.profit-note{font-size:11.5px;margin-top:8px;font-weight:600}
+
+/* ============================================================
+   5 · AR / BILLING
+   ============================================================ */
+.ar-tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:14px}
+.table-wrap{overflow:auto;border:var(--bw) solid var(--border);border-radius:var(--radius);background:var(--surface)}
+table{width:100%;border-collapse:collapse;min-width:720px}
+thead th{
+  text-align:left;font-size:11px;font-weight:800;color:var(--text-faint);
+  text-transform:uppercase;letter-spacing:.05em;padding:11px 14px;
+  border-bottom:var(--bw) solid var(--border);background:var(--surface-2);white-space:nowrap;
+}
+tbody td{padding:12px 14px;border-bottom:var(--bw) solid var(--border);font-size:13px}
+tbody tr:last-child td{border-bottom:none}
+tbody tr:hover{background:var(--surface-2)}
+td.r,th.r{text-align:right}
+tr.overdue{background:var(--alert-bg)}
+tr.overdue:hover{background:var(--alert-bg);filter:brightness(.98)}
+tr.overdue td{color:var(--alert-fg)}
+.mono{font-family:var(--num-font);font-variant-numeric:tabular-nums}
+
+/* ---------- toast ---------- */
+.toast-host{position:fixed;left:50%;bottom:26px;transform:translateX(-50%);z-index:90;display:flex;flex-direction:column;gap:8px;align-items:center}
+.toast{
+  display:flex;align-items:center;gap:10px;padding:11px 16px;
+  background:var(--text);color:var(--bg);border-radius:var(--radius-sm);
+  font-size:13px;font-weight:700;box-shadow:0 12px 30px -8px rgba(0,0,0,.4);
+  animation:toastIn var(--dur) ease;max-width:90vw;
+}
+.toast .tk{width:9px;height:9px;border-radius:999px;flex:0 0 auto}
+@keyframes toastIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+/* ---------- responsive ---------- */
+@media (max-width:960px){
+  .board{grid-template-columns:1fr}
+  .kpi-grid{grid-template-columns:repeat(2,1fr)}
+  .dash-grid{grid-template-columns:1fr}
+  .cost-grid{grid-template-columns:1fr}
+  .result{position:static}
+  .ar-tiles{grid-template-columns:1fr}
+  .brand-tag{display:none}
+  .ctl-label{display:none}
+}
+@media (max-width:620px){
+  .kpi-grid{grid-template-columns:1fr 1fr}
+  .order-actions{grid-template-columns:1fr}
+  .nav-btn span.lbl{display:none}
+  .nav-btn{padding:8px 11px}
+}
+
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+  .pulse{box-shadow:none}
+}
+</style>
+</head>
+<body>
+
+<!-- ============ TOPBAR ============ -->
+<header class="topbar">
+  <div class="brand">
+    <div class="brand-mark">◧</div>
+    <div>
+      <div class="brand-name">FleetLine</div>
+      <div class="brand-tag">ระบบจ่ายรถ · TMS</div>
+    </div>
+  </div>
+
+  <nav class="nav" aria-label="เมนูหลัก">
+    <button class="nav-btn" data-screen="dispatch" aria-current="page"><span class="nav-ico">▤</span><span class="lbl">กระดานจ่ายงาน</span></button>
+    <button class="nav-btn" data-screen="driver"><span class="nav-ico">▢</span><span class="lbl">แอปคนขับ</span></button>
+    <button class="nav-btn" data-screen="dash"><span class="nav-ico">◨</span><span class="lbl">แดชบอร์ด</span></button>
+    <button class="nav-btn" data-screen="cost"><span class="nav-ico">₿</span><span class="lbl">ต้นทุน–กำไร</span></button>
+    <button class="nav-btn" data-screen="ar"><span class="nav-ico">▦</span><span class="lbl">วางบิล/ลูกหนี้</span></button>
+  </nav>
+
+  <div class="controls">
+    <span class="ctl-label">แนว</span>
+    <div class="seg" role="group" aria-label="สลับแนวดีไซน์">
+      <button data-variant-btn="a" aria-pressed="true" title="Ops Console">A</button>
+      <button data-variant-btn="b" aria-pressed="false" title="Soft SaaS">B</button>
+      <button data-variant-btn="c" aria-pressed="false" title="Industrial">C</button>
+    </div>
+    <button class="icon-btn" id="themeBtn" title="สลับธีมสว่าง/มืด" aria-label="สลับธีม">🌙</button>
+  </div>
+</header>
+
+<main>
+
+<!-- ============ 1 · DISPATCH BOARD ============ -->
+<section class="screen active" id="dispatch">
+  <div class="page-head">
+    <div>
+      <div class="page-title">กระดานจ่ายงาน</div>
+      <div class="page-sub">คิวออเดอร์รอจ่าย · แนะนำทะเบียนอัตโนมัติ · ติดตามกองรถแบบสด</div>
+    </div>
+    <div class="live-badge"><span class="pulse"></span> อัปเดตสด · <span id="clock" class="num"></span></div>
+  </div>
+
+  <div class="board">
+    <!-- LEFT: order queue -->
+    <div class="card">
+      <div class="col-head"><h2>คิวออเดอร์รอจ่าย</h2><span class="chip"><span id="queueCount">4</span> ใบ</span></div>
+      <div class="col-body" id="queue"><!-- orders injected --></div>
+    </div>
+
+    <!-- RIGHT: fleet -->
+    <div class="card">
+      <div class="col-head"><h2>สถานะกองรถ</h2><span class="live-badge"><span class="pulse"></span> LIVE</span></div>
+      <div class="col-body" id="fleet"><!-- trucks injected --></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 2 · DRIVER PWA ============ -->
+<section class="screen" id="driver">
+  <div class="page-head">
+    <div>
+      <div class="page-title">แอปคนขับ</div>
+      <div class="page-sub">มือถือ · กดปุ่มใหญ่เปลี่ยนสถานะทีละขั้น ไม่ต้องพิมพ์</div>
+    </div>
+  </div>
+
+  <div class="phone-wrap">
+    <div class="phone">
+      <div class="ph-bar"><span>09:41</span><span>FleetLine · คนขับ ▪ ▪ ▪</span></div>
+      <div class="ph-body">
+        <div class="ph-hello">สวัสดีตอนเช้า</div>
+        <div class="ph-name">สมชาย ใจดี · 70-1234</div>
+
+        <div class="job">
+          <div class="job-id" id="jobId">TRIP-2601-0142</div>
+          <div class="job-cust" id="jobCust">แม็คโคร ศรีราชา</div>
+          <div class="job-drop" id="jobDrop">ร้านที่ 2 จาก 3 · ถ.สุขุมวิท ชลบุรี</div>
+          <div class="drop-prog" id="dropProg"></div>
+        </div>
+
+        <div class="now s-wait" id="nowBox">
+          <div class="now-label">สถานะปัจจุบัน</div>
+          <div class="now-status" id="nowStatus"><span>🔴</span><span>ถึงร้าน/รอลง</span></div>
+        </div>
+
+        <button class="big-btn bb-unload" id="advanceBtn">
+          <span class="em">🟡</span><span id="advanceLabel">เริ่มลงของ</span>
+        </button>
+
+        <div class="step-track" id="stepTrack"></div>
+
+        <div class="next-job" id="nextJob">งานถัดไป: <b>โลตัส บางนา</b> · 6 ล้อ · รับของ 11:30 น.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 3 · EXEC DASHBOARD ============ -->
+<section class="screen" id="dash">
+  <div class="page-head">
+    <div>
+      <div class="page-title">แดชบอร์ดผู้บริหาร</div>
+      <div class="page-sub">ภาพรวมประจำวัน · อัปเดต 09:41 น. วันเสาร์ที่ 18 ก.ค. 2569</div>
+    </div>
+  </div>
+
+  <div class="kpi-grid">
+    <div class="card kpi">
+      <div class="kpi-label"><span class="kpi-ico">🚚</span> รถกำลังวิ่ง</div>
+      <div class="kpi-val">18<span style="font-size:16px;color:var(--text-faint)">/24</span></div>
+      <div class="kpi-sub">ว่างพร้อมรับงาน 4 คัน</div>
+    </div>
+    <div class="card kpi">
+      <div class="kpi-label"><span class="kpi-ico">✓</span> งานเสร็จวันนี้</div>
+      <div class="kpi-val">63</div>
+      <div class="kpi-sub">คิดเป็น 87% ของแผน</div>
+    </div>
+    <div class="card kpi">
+      <div class="kpi-label"><span class="kpi-ico">฿</span> กำไรวันนี้</div>
+      <div class="kpi-val">184,500</div>
+      <div class="kpi-sub">สูงกว่าเมื่อวาน 6.2%</div>
+    </div>
+    <div class="card kpi warn">
+      <div class="kpi-label"><span class="kpi-ico">!</span> เที่ยวกำไรต่ำเกณฑ์</div>
+      <div class="kpi-val">5</div>
+      <div class="kpi-sub">ต่ำกว่า 15% ที่ตั้งไว้</div>
+    </div>
+  </div>
+
+  <div class="dash-grid">
+    <div class="card panel">
+      <h3>สัดส่วนสถานะกองรถ <span class="eyebrow">24 คัน</span></h3>
+      <div class="fleet-bar">
+        <div class="fleet-seg fseg-run" style="flex:11">11</div>
+        <div class="fleet-seg fseg-unload" style="flex:4">4</div>
+        <div class="fleet-seg fseg-wait" style="flex:3">3</div>
+        <div class="fleet-seg fseg-idle" style="flex:6">6</div>
+      </div>
+      <div class="legend">
+        <span class="leg"><span class="dot" style="color:var(--st-run)"></span> กำลังวิ่ง 11</span>
+        <span class="leg"><span class="dot" style="color:var(--st-unload)"></span> กำลังลง 4</span>
+        <span class="leg"><span class="dot" style="color:var(--st-wait)"></span> รอลง 3</span>
+        <span class="leg"><span class="dot" style="color:var(--st-idle)"></span> ว่าง 6</span>
+      </div>
+    </div>
+
+    <div class="card panel">
+      <h3>รถที่ต้องจับตา</h3>
+      <div class="watch">
+        <div class="watch-row">
+          <span class="watch-plate">82-5567</span>
+          <div class="watch-mid"><div class="watch-cust">บจก. สยามฟู้ดส์</div><div class="watch-reason">ล่าช้ากว่าแผน 48 นาที · รถติดบางนา</div></div>
+          <span class="st st-wait"><span class="dot"></span>ล่าช้า</span>
+        </div>
+        <div class="watch-row">
+          <span class="watch-plate">6กก-9012</span>
+          <div class="watch-mid"><div class="watch-cust">ไทวัสดุ รังสิต</div><div class="watch-reason">กำไรเที่ยวติดลบ −4.5% · ระยะทางเกินประเมิน</div></div>
+          <span class="st st-wait"><span class="dot"></span>ขาดทุน</span>
+        </div>
+        <div class="watch-row">
+          <span class="watch-plate">70-8899</span>
+          <div class="watch-mid"><div class="watch-cust">—</div><div class="watch-reason">ใกล้ครบระยะเช็คระยะ อีก 320 กม.</div></div>
+          <span class="st st-idle"><span class="dot"></span>ซ่อมบำรุง</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 4 · COST / PROFIT ============ -->
+<section class="screen" id="cost">
+  <div class="page-head">
+    <div>
+      <div class="page-title">คิดต้นทุน–กำไรต่อเที่ยว</div>
+      <div class="page-sub">เที่ยว TRIP-2601-0142 · 70-1234 · แม็คโคร ศรีราชา</div>
+    </div>
+  </div>
+
+  <div class="cost-grid">
+    <div class="card panel">
+      <div class="seg-full" role="group" aria-label="เลือกสูตรคิดเงิน">
+        <button data-formula="dist" aria-pressed="true">ตามระยะทาง + น้ำมัน</button>
+        <button data-formula="zone" aria-pressed="false">ตามเขตพื้นที่ (เหมา)</button>
+      </div>
+
+      <!-- distance formula fields -->
+      <div id="fDist">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+          <div class="field"><label>ระยะทาง (ดึงอัตโนมัติ)</label><input class="input input-lock" id="km" value="142" readonly> <span style="font-size:11px;color:var(--text-faint)">กม. · ไป-กลับ</span></div>
+          <div class="field"><label>อัตราสิ้นเปลือง</label><input class="input" id="kml" value="3.5"> <span style="font-size:11px;color:var(--text-faint)">กม./ลิตร</span></div>
+          <div class="field"><label>ราคาน้ำมัน</label><input class="input" id="fuel" value="32.44"> <span style="font-size:11px;color:var(--text-faint)">บาท/ลิตร</span></div>
+          <div class="field"><label>ค่าสึกหรอ</label><input class="input" id="wear" value="2"> <span style="font-size:11px;color:var(--text-faint)">บาท/กม.</span></div>
+        </div>
+      </div>
+
+      <!-- zone formula fields -->
+      <div id="fZone" style="display:none">
+        <div class="field">
+          <label>เลือกเขตพื้นที่ (อัตราเหมา)</label>
+          <select class="input" id="zone">
+            <option value="3200">กทม.–ปริมณฑล · เหมา 3,200 ฿</option>
+            <option value="3800" selected>ภาคตะวันออก (ชลบุรี/ระยอง) · เหมา 3,800 ฿</option>
+            <option value="4500">ภาคกลาง–อยุธยา/สระบุรี · เหมา 4,500 ฿</option>
+            <option value="6800">ภาคเหนือตอนล่าง · เหมา 6,800 ฿</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="field"><label>ค่าคนขับต่อเที่ยว</label><input class="input" id="driverpay" value="450"> <span style="font-size:11px;color:var(--text-faint)">บาท</span></div>
+
+      <div class="field">
+        <label>ค่าพิเศษ (เลือกจากรหัสค่าใช้จ่าย)</label>
+        <div class="extras" id="extras">
+          <button class="extra" data-amt="80"  aria-pressed="false">ทางด่วน <span class="amt">+80</span></button>
+          <button class="extra" data-amt="300" aria-pressed="true">เบี้ยเลี้ยงคนขับ <span class="amt">+300</span></button>
+          <button class="extra" data-amt="500" aria-pressed="false">ลากตู้ <span class="amt">+500</span></button>
+          <button class="extra" data-amt="250" aria-pressed="false">น้ำหนักเกิน <span class="amt">+250</span></button>
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+        <div class="field"><label>รายได้ค่าขนส่ง</label><input class="input" id="revenue" value="6500"> <span style="font-size:11px;color:var(--text-faint)">บาท</span></div>
+        <div class="field"><label>เกณฑ์กำไรขั้นต่ำ</label><input class="input" id="thresh" value="15"> <span style="font-size:11px;color:var(--text-faint)">% · เตือนถ้าต่ำกว่านี้</span></div>
+      </div>
+    </div>
+
+    <div class="card result">
+      <div class="eyebrow" style="margin-bottom:12px">สรุปต้นทุน–กำไร</div>
+      <div class="res-row"><span id="l1">ค่าน้ำมัน</span><span class="num" id="v1">–</span></div>
+      <div class="res-row"><span id="l2">ค่าสึกหรอ/บำรุง</span><span class="num" id="v2">–</span></div>
+      <div class="res-row"><span>ค่าคนขับ</span><span class="num" id="v3">–</span></div>
+      <div class="res-row"><span>ค่าพิเศษ</span><span class="num" id="v4">–</span></div>
+      <div class="res-row res-total"><span>ต้นทุนรวม</span><span class="num" id="vtotal">–</span></div>
+      <div class="res-row" style="margin-top:8px"><span>รายได้ค่าขนส่ง</span><span class="num" id="vrev">–</span></div>
+
+      <div class="profit-box ok" id="profitBox">
+        <div class="profit-val" id="profitVal">–</div>
+        <div class="profit-pct" id="profitPct">–</div>
+        <div class="profit-note" id="profitNote"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 5 · AR / BILLING ============ -->
+<section class="screen" id="ar">
+  <div class="page-head">
+    <div>
+      <div class="page-title">วางบิล / ลูกหนี้</div>
+      <div class="page-sub">รอบบิลเดือน กรกฎาคม 2569</div>
+    </div>
+    <div style="display:flex;gap:8px">
+      <button class="btn" id="exportBtn">⤓ ส่งออก Excel</button>
+      <button class="btn btn-primary" id="issueBtn">+ ออกบิลสิ้นเดือน</button>
+    </div>
+  </div>
+
+  <div class="ar-tiles">
+    <div class="card kpi"><div class="kpi-label">ลูกหนี้คงค้างรวม</div><div class="kpi-val">1,284,600</div><div class="kpi-sub">บาท · 14 ใบ</div></div>
+    <div class="card kpi warn"><div class="kpi-label">เกินกำหนดชำระ</div><div class="kpi-val">312,000</div><div class="kpi-sub">บาท · 3 ใบ</div></div>
+    <div class="card kpi"><div class="kpi-label">ครบกำหนดใน 7 วัน</div><div class="kpi-val">458,900</div><div class="kpi-sub">บาท · 5 ใบ</div></div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>เลขที่บิล</th><th>ลูกค้า</th><th class="r">ยอดเงิน (฿)</th><th>ครบกำหนด</th><th>สถานะ</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="mono">INV-2507-0042</td><td>บจก. สยามฟู้ดส์</td>
+          <td class="r num">148,500.00</td><td class="mono">31 ก.ค. 69</td>
+          <td><span class="st st-idle"><span class="dot"></span>รอชำระ</span></td>
+        </tr>
+        <tr class="overdue">
+          <td class="mono">INV-2506-0188</td><td>ห้างเซ็นทรัล ระยอง</td>
+          <td class="r num">96,000.00</td><td class="mono">30 มิ.ย. 69</td>
+          <td><span class="st st-wait"><span class="dot"></span>เกินกำหนด 18 วัน</span></td>
+        </tr>
+        <tr>
+          <td class="mono">INV-2507-0051</td><td>โลตัส บางนา</td>
+          <td class="r num">72,300.00</td><td class="mono">28 ก.ค. 69</td>
+          <td><span class="st st-idle"><span class="dot"></span>รอชำระ</span></td>
+        </tr>
+        <tr>
+          <td class="mono">INV-2507-0033</td><td>แม็คโคร ศรีราชา</td>
+          <td class="r num">210,750.00</td><td class="mono">15 ก.ค. 69</td>
+          <td><span class="st st-done"><span class="dot"></span>ชำระแล้ว</span></td>
+        </tr>
+        <tr class="overdue">
+          <td class="mono">INV-2506-0155</td><td>ไทวัสดุ รังสิต</td>
+          <td class="r num">124,000.00</td><td class="mono">25 มิ.ย. 69</td>
+          <td><span class="st st-wait"><span class="dot"></span>เกินกำหนด 23 วัน</span></td>
+        </tr>
+        <tr>
+          <td class="mono">INV-2507-0060</td><td>ซีพี เฟรชมาร์ท</td>
+          <td class="r num">88,400.00</td><td class="mono">02 ส.ค. 69</td>
+          <td><span class="st st-idle"><span class="dot"></span>รอชำระ</span></td>
+        </tr>
+        <tr class="overdue">
+          <td class="mono">INV-2506-0201</td><td>บิ๊กซี บางพลี</td>
+          <td class="r num">92,000.00</td><td class="mono">28 มิ.ย. 69</td>
+          <td><span class="st st-wait"><span class="dot"></span>เกินกำหนด 20 วัน</span></td>
+        </tr>
+        <tr>
+          <td class="mono">INV-2507-0071</td><td>บจก. ปูนซิเมนต์ไทย</td>
+          <td class="r num">356,200.00</td><td class="mono">05 ส.ค. 69</td>
+          <td><span class="st st-done"><span class="dot"></span>ชำระแล้ว</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+</main>
+
+<div class="toast-host" id="toastHost" aria-live="polite"></div>
+
+<script>
+"use strict";
+const $  = (s,r=document)=>r.querySelector(s);
+const $$ = (s,r=document)=>[...r.querySelectorAll(s)];
+const root = document.documentElement;
+const fmt = n => Math.round(n).toLocaleString('th-TH');
+
+/* ---------- toast ---------- */
+function toast(msg, tone='var(--st-done)'){
+  const host = $('#toastHost');
+  const el = document.createElement('div');
+  el.className='toast';
+  el.innerHTML = `<span class="tk" style="background:${tone}"></span>${msg}`;
+  host.appendChild(el);
+  setTimeout(()=>{ el.style.opacity='0'; el.style.transition='opacity .2s'; setTimeout(()=>el.remove(),200); }, 2600);
+}
+
+/* ---------- nav ---------- */
+$$('.nav-btn').forEach(b=>b.addEventListener('click',()=>{
+  $$('.nav-btn').forEach(x=>x.removeAttribute('aria-current'));
+  b.setAttribute('aria-current','page');
+  $$('.screen').forEach(s=>s.classList.remove('active'));
+  $('#'+b.dataset.screen).classList.add('active');
+}));
+
+/* ---------- theme ---------- */
+$('#themeBtn').addEventListener('click',()=>{
+  const dark = root.getAttribute('data-theme')==='dark';
+  root.setAttribute('data-theme', dark?'light':'dark');
+  $('#themeBtn').textContent = dark?'🌙':'☀️';
+});
+
+/* ---------- variant ---------- */
+$$('[data-variant-btn]').forEach(b=>b.addEventListener('click',()=>{
+  $$('[data-variant-btn]').forEach(x=>x.setAttribute('aria-pressed','false'));
+  b.setAttribute('aria-pressed','true');
+  root.setAttribute('data-variant', b.dataset.variantBtn);
+}));
+
+/* ============ 1 · DISPATCH BOARD data ============ */
+const orders = [
+  {id:'ORD-2601-0158', cust:'บจก. สยามฟู้ดส์',   wheel:'10 ล้อ', drops:3, ton:'8.2 ตัน', plate:'70-1234', drv:'สมชาย ใจดี',   why:'ว่าง · อยู่ใกล้จุดรับ 4 กม.'},
+  {id:'ORD-2601-0159', cust:'แม็คโคร ศรีราชา',    wheel:'6 ล้อ',  drops:2, ton:'4.5 ตัน', plate:'82-5567', drv:'ประสิทธิ์ แก้วมณี', why:'เพิ่งส่งเสร็จ ระยอง · ตรงเส้นทาง'},
+  {id:'ORD-2601-0160', cust:'ไทวัสดุ รังสิต',      wheel:'10 ล้อ', drops:1, ton:'11.0 ตัน',plate:'91-3344', drv:'วิรัช พงษ์ไพร',  why:'รับน้ำหนักได้ · คิวว่างช่วงบ่าย'},
+  {id:'ORD-2601-0161', cust:'โลตัส บางนา',         wheel:'4 ล้อ',  drops:4, ton:'2.1 ตัน', plate:'ผก-4521', drv:'ณรงค์ สุขเกษม',  why:'รถเล็กเหมาะ multi-drop 4 ร้าน'},
+];
+const trucks = [
+  {plate:'70-1234', drv:'สมชาย ใจดี',    st:'idle',   loc:'คลังสินค้า บางนา', ago:0},
+  {plate:'82-5567', drv:'ประสิทธิ์ แก้วมณี', st:'run',   loc:'มอเตอร์เวย์ กม.42', ago:1},
+  {plate:'6กก-9012',drv:'ธีระ วัฒนา',     st:'unload', loc:'ไทวัสดุ รังสิต',   ago:0},
+  {plate:'91-3344', drv:'วิรัช พงษ์ไพร',   st:'wait',   loc:'แม็คโคร ศรีราชา',  ago:2},
+  {plate:'70-8899', drv:'อนุชา ทองดี',    st:'run',    loc:'ถ.สุขุมวิท ชลบุรี', ago:1},
+  {plate:'ผก-4521', drv:'ณรงค์ สุขเกษม',   st:'idle',   loc:'ลานจอด คลองหลวง',  ago:5},
+];
+const stLabel = {run:'กำลังวิ่ง', wait:'ถึงร้าน/รอลง', unload:'กำลังลง', done:'เสร็จ', idle:'ว่าง'};
+
+function renderQueue(){
+  const wrap = $('#queue'); wrap.innerHTML='';
+  const active = orders.filter(o=>!o.assigned);
+  $('#queueCount').textContent = active.length;
+  orders.forEach(o=>{
+    const el = document.createElement('div');
+    el.className = 'order' + (o.assigned?' assigned':'');
+    el.innerHTML = `
+      <div class="order-top">
+        <span class="order-id">${o.id}</span>
+        <span class="chip">${o.assigned?'จ่ายแล้ว':'รอจ่าย'}</span>
+      </div>
+      <div class="order-cust">${o.cust}</div>
+      <div class="order-meta">
+        <span class="chip">🚛 ${o.wheel}</span>
+        <span class="chip">📍 ${o.drops} ร้าน</span>
+        <span class="chip">⚖ ${o.ton}</span>
+      </div>
+      <div class="rec">
+        <span class="rec-ico">★</span>
+        <div style="flex:1">
+          <div class="rec-plate">แนะนำ: ${o.plate} <span style="color:var(--text-dim);font-weight:600">· ${o.drv}</span></div>
+          <div class="rec-why">${o.why}</div>
+        </div>
+      </div>
+      <div class="order-actions">
+        <button class="btn btn-primary btn-sm" data-act="assign">มอบหมายตรง</button>
+        <button class="btn btn-sm" data-act="offer">ยิง offer ให้คนขับ</button>
+      </div>`;
+    if(!o.assigned){
+      el.addEventListener('click',()=>{ $$('.order').forEach(x=>x.classList.remove('sel')); el.classList.add('sel'); });
+      el.querySelector('[data-act="assign"]').addEventListener('click',(e)=>{
+        e.stopPropagation(); o.assigned=true;
+        toast(`มอบหมาย ${o.id} → ${o.plate} แล้ว`); renderQueue();
+      });
+      el.querySelector('[data-act="offer"]').addEventListener('click',(e)=>{
+        e.stopPropagation();
+        toast(`ส่ง offer ${o.id} ให้ ${o.drv} · รอตอบรับ`, 'var(--st-run)');
+      });
+    }
+    wrap.appendChild(el);
+  });
+}
+function renderFleet(){
+  const wrap = $('#fleet'); wrap.innerHTML='';
+  trucks.forEach(t=>{
+    const el = document.createElement('div');
+    el.className='truck';
+    const agoTxt = t.ago===0 ? 'เมื่อสักครู่' : `${t.ago} นาทีที่แล้ว`;
+    el.innerHTML = `
+      <span class="truck-plate">${t.plate}</span>
+      <div class="truck-mid">
+        <div class="truck-drv">${t.drv}</div>
+        <div class="truck-loc">◉ ${t.loc} · อัปเดต ${agoTxt}</div>
+      </div>
+      <span class="st st-${t.st}"><span class="dot"></span>${stLabel[t.st]}</span>`;
+    wrap.appendChild(el);
+  });
+}
+renderQueue(); renderFleet();
+
+/* live-ish: bump timestamps + occasional status shuffle (respects reduced motion) */
+const reduce = window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+function tickClock(){
+  const d = new Date();
+  const s = d.toLocaleTimeString('th-TH',{hour:'2-digit',minute:'2-digit',second:'2-digit'});
+  const c = $('#clock'); if(c) c.textContent = s;
+}
+tickClock(); setInterval(tickClock, 1000);
+if(!reduce){
+  setInterval(()=>{
+    trucks.forEach(t=>{ if(t.ago>0 && Math.random()<.5) t.ago++; });
+    // occasional realistic transition
+    if(Math.random()<.4){
+      const t = trucks[Math.floor(Math.random()*trucks.length)];
+      const flow = {wait:'unload', unload:'run', run:'idle', idle:'run'};
+      t.st = flow[t.st] || t.st; t.ago = 0;
+      t.loc = ['มอเตอร์เวย์ กม.'+(20+Math.floor(Math.random()*60)),'คลังสินค้า บางนา','ถ.บางนา-ตราด','ลานจอด คลองหลวง'][Math.floor(Math.random()*4)];
+    }
+    renderFleet();
+  }, 4500);
+}
+
+/* ============ 2 · DRIVER PWA ============ */
+const flow = [
+  {key:'wait',   emoji:'🔴', label:'ถึงร้าน/รอลง', cls:'s-wait'},
+  {key:'unload', emoji:'🟡', label:'กำลังลง',      cls:'s-unload'},
+  {key:'done',   emoji:'🟢', label:'เสร็จ',        cls:'s-done'},
+  {key:'idle',   emoji:'✅', label:'ว่าง (รับงานต่อ)', cls:'s-idle'},
+];
+const nextAction = ['เริ่มลงของ','ลงเสร็จแล้ว','ปิดงาน–ว่าง','รับงานถัดไป'];
+const nextBtnStyle = ['bb-unload','bb-done','bb-idle','bb-wait'];
+const nextEmoji = ['🟡','🟢','✅','🔴'];
+let cur = 0;
+
+function renderDriver(){
+  const st = flow[cur];
+  const box = $('#nowBox');
+  box.className = 'now ' + st.cls;
+  $('#nowStatus').innerHTML = `<span>${st.emoji}</span><span>${st.label}</span>`;
+  const btn = $('#advanceBtn');
+  btn.className = 'big-btn ' + nextBtnStyle[cur];
+  $('#advanceLabel').textContent = nextAction[cur];
+  btn.querySelector('.em').textContent = nextEmoji[cur];
+
+  // step track
+  const track = $('#stepTrack'); track.innerHTML='';
+  flow.forEach((f,i)=>{
+    const s = document.createElement('div');
+    s.className = 'step' + (i<=cur?' done':'');
+    s.innerHTML = `<div class="step-dot">${i<cur?'✓':i+1}</div>${f.label.split('(')[0]}`;
+    track.appendChild(s);
+  });
+
+  // drop progress (2 of 3 filled while in trip)
+  const dp = $('#dropProg'); dp.innerHTML='';
+  const filled = cur>=2 ? 3 : 2;
+  for(let i=0;i<3;i++){ const d=document.createElement('div'); d.className='drop-seg'+(i<filled?' on':''); dp.appendChild(d); }
+}
+$('#advanceBtn').addEventListener('click',()=>{
+  const done = flow[cur];
+  const msgs = {wait:'บันทึก: เริ่มลงของแล้ว', unload:'บันทึก: ลงของเสร็จ', done:'ปิดงานเรียบร้อย', idle:'พร้อมรับงานใหม่'};
+  const tones = ['var(--st-unload)','var(--st-done)','var(--st-idle)','var(--st-wait)'];
+  toast(msgs[done.key], tones[cur]);
+  if(cur===3){
+    // load next job
+    cur=0;
+    $('#jobId').textContent='TRIP-2601-0143';
+    $('#jobCust').textContent='โลตัส บางนา';
+    $('#jobDrop').textContent='ร้านที่ 1 จาก 2 · ถ.บางนา-ตราด';
+    $('#nextJob').innerHTML='งานถัดไป: <b>ซีพี เฟรชมาร์ท ศรีราชา</b> · 4 ล้อ · รับของ 14:00 น.';
+  } else { cur++; }
+  renderDriver();
+});
+renderDriver();
+
+/* ============ 4 · COST / PROFIT ============ */
+let formula='dist';
+$$('[data-formula]').forEach(b=>b.addEventListener('click',()=>{
+  $$('[data-formula]').forEach(x=>x.setAttribute('aria-pressed','false'));
+  b.setAttribute('aria-pressed','true');
+  formula=b.dataset.formula;
+  $('#fDist').style.display = formula==='dist'?'block':'none';
+  $('#fZone').style.display = formula==='zone'?'block':'none';
+  calc();
+}));
+$$('#extras .extra').forEach(b=>b.addEventListener('click',()=>{
+  b.setAttribute('aria-pressed', b.getAttribute('aria-pressed')==='true'?'false':'true'); calc();
+}));
+['km','kml','fuel','wear','driverpay','revenue','thresh','zone'].forEach(id=>{
+  const el=$('#'+id); if(el) el.addEventListener('input',calc);
+  if(el && el.tagName==='SELECT') el.addEventListener('change',calc);
+});
+
+function num(id){ return parseFloat($('#'+id).value)||0; }
+function calc(){
+  const driverpay = num('driverpay');
+  let fuelCost=0, wearCost=0;
+  if(formula==='dist'){
+    const km=num('km'), kml=num('kml')||1, fuel=num('fuel'), wear=num('wear');
+    fuelCost = km/kml*fuel;
+    wearCost = km*wear;
+    $('#l1').textContent='ค่าน้ำมัน'; $('#l2').textContent='ค่าสึกหรอ/บำรุง';
+    $('#v1').textContent = fmt(fuelCost);
+    $('#v2').textContent = fmt(wearCost);
+  } else {
+    const zone = num('zone');
+    fuelCost = zone; wearCost = 0;
+    $('#l1').textContent='ต้นทุนเหมาตามเขต'; $('#l2').textContent='(รวมน้ำมัน+สึกหรอ)';
+    $('#v1').textContent = fmt(zone);
+    $('#v2').textContent = '0';
+  }
+  const extras = $$('#extras .extra[aria-pressed="true"]').reduce((s,b)=>s+ (+b.dataset.amt),0);
+  const total = fuelCost + wearCost + driverpay + extras;
+  const rev = num('revenue');
+  const profit = rev - total;
+  const pct = rev>0 ? profit/rev*100 : 0;
+  const thresh = num('thresh');
+
+  $('#v3').textContent = fmt(driverpay);
+  $('#v4').textContent = fmt(extras);
+  $('#vtotal').textContent = fmt(total);
+  $('#vrev').textContent = fmt(rev);
+  $('#profitVal').textContent = (profit>=0?'+':'−') + fmt(Math.abs(profit)) + ' ฿';
+  $('#profitPct').textContent = 'อัตรากำไร ' + pct.toFixed(1) + '%';
+
+  const box=$('#profitBox');
+  if(pct < thresh){
+    box.className='profit-box bad';
+    $('#profitNote').textContent = `⚠ ต่ำกว่าเกณฑ์ ${thresh}% ที่ตั้งไว้ — ควรทบทวนราคาหรือจัดเส้นทางใหม่`;
+  } else {
+    box.className='profit-box ok';
+    $('#profitNote').textContent = `✓ ผ่านเกณฑ์ ${thresh}% — กำไรอยู่ในระดับที่ยอมรับได้`;
+  }
+}
+calc();
+
+/* ============ 5 · AR ============ */
+$('#exportBtn').addEventListener('click',()=>toast('กำลังสร้างไฟล์ Excel · 8 รายการ','var(--st-run)'));
+$('#issueBtn').addEventListener('click',()=>toast('ออกบิลสิ้นเดือนแล้ว 6 ใบ · ส่งอีเมลลูกค้าอัตโนมัติ'));
+</script>
+</body>
+</html>
