@@ -1,6 +1,11 @@
 /**
- * TrainFlow — Design system (LOCKED): variant B "Soft SaaS" (teal)
- * ยกมาจาก DCS-TMS (`apps/web/src/theme.css`) ทั้งชุด — token เดิม ค่าเดิม ไม่แก้สี/มุม/เงา
+ * TrainFlow — Design system: variant B "Soft SaaS" · palette v2 "Forest + Neutral"
+ * โครง/มุม/เงา/ฟอนต์ ยกจาก DCS-TMS · **สีปรับใหม่ 2026-08-24** ตามฟีดแบ็ก "เขียวเกินไป"
+ *
+ *   เดิม: teal #0E8C82 + พื้นผิวเจือเขียวทุกชิ้น (--surface-2 #EEF4F2, --border #E1E9E7)
+ *   ใหม่: **เขียวเฉพาะแบรนด์/ปุ่ม/สถานะผ่าน · พื้นผิวเป็นเทากลางสะอาด**
+ *         อ้างอิงสีจากงานออกแบบของลูกค้า (docs/spec/uxui.jpg):
+ *         แถบเมนู #002917 · ปุ่มหลัก #17852F · พื้นผิว #F0F4F5 / #E8ECED
  * ต้นแบบภาพ: docs/trainflow-prototype.html · อ้างอิงเดิม: docs/spec/tms-prototype-reference.html
  * หน้าเว็บ React ทุกหน้าใช้ token เหล่านี้ — สี/มุม/เงา/ฟอนต์ มาจากที่นี่ที่เดียว
  *
@@ -55,18 +60,24 @@
 
 /* ---------- NEUTRALS + ACCENT (variant B, teal) ---------- */
 :root, :root[data-theme="light"] {
-  --bg: #FFFFFF; --surface: #FFFFFF; --surface-2: #F4F7F6; --surface-3: #EBF1EF;
-  --border: #E4EBE9; --border-strong: #CBD8D4;
-  --text: #152420; --text-dim: #586C66; --text-faint: #88A099;
-  --accent: #0E8C82; --accent-fg: #FFFFFF; --accent-weak: #DCF0ED; --accent-line: #0E8C82;
-  --shadow-c1: rgba(20,40,35,.05); --shadow-c2: rgba(20,50,44,.16);
+  --bg: #F4F6F7; --surface: #FFFFFF; --surface-2: #F0F4F5; --surface-3: #E8ECED;
+  --border: #E1E6E8; --border-strong: #C6CFD2;
+  --text: #161D20; --text-dim: #59666B; --text-faint: #8A979C;
+  --accent: #17852F; --accent-fg: #FFFFFF; --accent-weak: #E4F2E7; --accent-line: #17852F;
+  --accent-ink: #12692A;              /* เขียวเข้มสำหรับตัวอักษร/ลิงก์ (คอนทราสต์พอบนพื้นขาว) */
+  --brand-deep: #002917; --brand-deep-fg: #E8F0EB;   /* แถบเมนูซ้าย + หน้าเข้าสู่ระบบ */
+  --gold: #B08829; --gold-weak: #F6EEDA;             /* วุฒิบัตร/ของที่เป็นเกียรติบัตร */
+  --shadow-c1: rgba(18,28,32,.05); --shadow-c2: rgba(18,30,36,.14);
 }
 :root[data-theme="dark"] {
-  --bg: #0F1917; --surface: #17231F; --surface-2: #1E2C28; --surface-3: #263832;
-  --border: #28382F; --border-strong: #3A4E45;
-  --text: #E8F0ED; --text-dim: #96AAA3; --text-faint: #688079;
-  --accent: #34C6BC; --accent-fg: #06201D; --accent-weak: rgba(52,198,188,.14); --accent-line: #34C6BC;
-  --shadow-c1: rgba(0,0,0,.28); --shadow-c2: rgba(0,0,0,.5);
+  --bg: #101518; --surface: #171D20; --surface-2: #1E2529; --surface-3: #273034;
+  --border: #2A3337; --border-strong: #3C474C;
+  --text: #E7EDEF; --text-dim: #97A5AA; --text-faint: #6B787D;
+  --accent: #3AAE52; --accent-fg: #06180C; --accent-weak: rgba(58,174,82,.15); --accent-line: #3AAE52;
+  --accent-ink: #6BD182;
+  --brand-deep: #0A1F16; --brand-deep-fg: #DCE8E1;
+  --gold: #D9B45A; --gold-weak: rgba(217,180,90,.14);
+  --shadow-c1: rgba(0,0,0,.3); --shadow-c2: rgba(0,0,0,.52);
 }
 
 /* honor OS dark preference when no explicit data-theme is set */
@@ -79,10 +90,12 @@
     --st-idle: #94A3B8;   --st-idle-bg: rgba(148,163,184,.15);--st-idle-fg: #CBD5E1;
     --alert: #F87171;     --alert-bg: rgba(239,68,68,.16);    --alert-fg: #FCA5A5;
     --focus: #60A5FA;
-    --bg: #0F1917; --surface: #17231F; --surface-2: #1E2C28; --surface-3: #263832;
-    --border: #28382F; --border-strong: #3A4E45;
-    --text: #E8F0ED; --text-dim: #96AAA3; --text-faint: #688079;
-    --accent: #34C6BC; --accent-fg: #06201D; --accent-weak: rgba(52,198,188,.14); --accent-line: #34C6BC;
-    --shadow-c1: rgba(0,0,0,.28); --shadow-c2: rgba(0,0,0,.5);
+    --bg: #101518; --surface: #171D20; --surface-2: #1E2529; --surface-3: #273034;
+    --border: #2A3337; --border-strong: #3C474C;
+    --text: #E7EDEF; --text-dim: #97A5AA; --text-faint: #6B787D;
+    --accent: #3AAE52; --accent-fg: #06180C; --accent-weak: rgba(58,174,82,.15); --accent-line: #3AAE52;
+    --accent-ink: #6BD182; --brand-deep: #0A1F16; --brand-deep-fg: #DCE8E1;
+    --gold: #D9B45A; --gold-weak: rgba(217,180,90,.14);
+    --shadow-c1: rgba(0,0,0,.3); --shadow-c2: rgba(0,0,0,.52);
   }
 }
