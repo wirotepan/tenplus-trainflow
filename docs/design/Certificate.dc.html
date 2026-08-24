@@ -1,0 +1,136 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@400;500;600&family=Trirong:wght@500;600&display=swap">
+  <style>
+    body { margin:0; font-family:"IBM Plex Sans Thai",system-ui,sans-serif;
+           background:#F7F3EC; color:#242019; font-size:16px; line-height:1.7;
+           -webkit-font-smoothing:antialiased; }
+    a { color:#2C5240; } a:hover { color:#1B3628; }
+    .n { font-variant-numeric:tabular-nums; }
+    .disp { font-family:"Trirong","IBM Plex Sans Thai",serif; }
+    .side { display:flex; flex-direction:column; gap:2px; padding:28px 16px; background:#2C5240; color:#E9E3D6; }
+    .snav { padding:9px 12px; font-size:15px; color:#C3D2C8; }
+    .snav-on { padding:9px 12px; border-radius:3px; background:#F7F3EC; color:#2C5240; font-size:15px; font-weight:600; }
+    .card { background:#FDFBF7; border:1px solid #E9E1D1; }
+    .btn { padding:9px 16px; border:1px solid #D8CFBD; border-radius:3px; font-size:15px; color:#5A5245; background:#FDFBF7; }
+    .btn-p { padding:9px 18px; border-radius:3px; background:#2C5240; color:#F7F3EC; font-size:15px; font-weight:600; }
+    .lbl { font-size:14px; color:#8A7F68; line-height:1.5; }
+    .rule { padding-bottom:18px; border-bottom:2px solid #B08829; }
+    .th { font-size:13.5px; color:#8A7F68; letter-spacing:.02em; }
+    .td { font-size:15.5px; }
+    .sub { color:#6E6555; }
+  </style>
+</helmet>
+
+<div style="display:grid; grid-template-columns:212px 1fr; min-height:900px; background:#F7F3EC">
+  <div class="side">
+    <div style="display:flex; flex-direction:column; gap:2px; padding:0 8px 24px">
+      <div class="disp" style="font-size:20px; font-weight:600; letter-spacing:.01em">TrainFlow</div>
+      <div style="font-size:12.5px; color:#9DB3A5; line-height:1.5; letter-spacing:.04em">SAFETY SKILL CENTER</div>
+    </div>
+    <div class="snav">ภาพรวม</div>
+    <div class="snav">งานฝึกอบรม</div>
+    <div class="snav">ปฏิทินวิทยากร</div>
+    <div class="snav">ผู้เข้าอบรม</div>
+    <div class="snav-on">วุฒิบัตร</div>
+    <div class="snav">การเงิน</div>
+    <div class="snav">ข้อมูลหลัก</div>
+  </div>
+  <div style="padding:34px 46px 46px; display:flex; flex-direction:column; gap:28px">
+
+    <div class="rule" style="display:flex; align-items:flex-end; justify-content:space-between; gap:24px">
+      <div style="display:flex; flex-direction:column; gap:2px">
+        <div class="n" style="font-size:12.5px; letter-spacing:.14em; color:#8A7F68">TR-2026-00125</div>
+        <div class="disp" style="font-size:29px; font-weight:600; line-height:1.35">วุฒิบัตร</div>
+        <div style="font-size:15px; color:#6E6555">ระบบตรวจเกณฑ์ผ่านแล้วออกให้อัตโนมัติ ผู้เข้าอบรมดาวน์โหลดเองได้</div>
+      </div>
+      <div style="display:flex; gap:10px; align-items:center">
+        <div class="btn">พิมพ์ทั้งชุด 52 ใบ</div>
+        <div class="btn-p">ออกวุฒิบัตรทั้งงาน</div>
+      </div>
+    </div>
+
+    <div style="display:grid; grid-template-columns:minmax(0,1.35fr) minmax(0,.85fr); gap:24px; align-items:start">
+
+      <div style="display:flex; flex-direction:column; gap:14px">
+        <div class="disp" style="font-size:19px; font-weight:600">ตัวอย่างวุฒิบัตร</div>
+        <div class="card" style="padding:26px">
+          <div style="border:1px solid #B08829; padding:5px">
+            <div style="border:3px double #B08829; padding:34px 38px; text-align:center; display:flex; flex-direction:column; gap:0; background:#FFFDF8">
+              <div style="font-size:13px; letter-spacing:.2em; color:#B08829; font-weight:600">SAFETY SKILL CENTER</div>
+              <div style="width:44px; height:1px; background:#B08829; margin:14px auto"></div>
+              <div class="disp" style="font-size:31px; font-weight:600; letter-spacing:.05em; line-height:1.3">วุฒิบัตร</div>
+              <div style="font-size:13px; letter-spacing:.24em; color:#8A7F68; margin-top:2px">CERTIFICATE OF COMPLETION</div>
+              <div style="font-size:16px; color:#6E6555; margin-top:24px">ขอมอบวุฒิบัตรฉบับนี้ไว้เพื่อแสดงว่า</div>
+              <div class="disp" style="font-size:27px; font-weight:600; color:#2C5240; margin-top:10px; line-height:1.35">นายสมชาย โดดี</div>
+              <div style="font-size:16px; color:#6E6555; margin-top:10px">ได้ผ่านการฝึกอบรมหลักสูตร</div>
+              <div class="disp" style="font-size:21px; font-weight:600; margin-top:6px; line-height:1.4">Safety Leadership</div>
+              <div style="font-size:16px; color:#6E6555; margin-top:10px">ระยะเวลาการอบรม 6 ชั่วโมง</div>
+              <div style="font-size:16px; color:#6E6555">ให้ไว้ ณ วันที่ 15 มิถุนายน พุทธศักราช 2569</div>
+              <div style="display:flex; align-items:flex-end; justify-content:space-between; gap:22px; margin-top:34px">
+                <div style="text-align:left; display:flex; flex-direction:column; gap:2px">
+                  <span style="font-size:13px; color:#8A7F68">เลขที่วุฒิบัตร</span>
+                  <span class="n" style="font-size:15px; font-weight:600">SSC-2569-00125-0001</span>
+                </div>
+                <div style="text-align:center; display:flex; flex-direction:column; gap:2px">
+                  <div style="width:120px; height:1px; background:#D8CFBD; margin-bottom:6px"></div>
+                  <span style="font-size:15px; color:#3A342A">(อรรถวุฒิ สุดสงวน)</span>
+                  <span style="font-size:13.5px; color:#8A7F68">ผู้อำนวยการ</span>
+                </div>
+                <div style="width:62px; height:62px; background:repeating-conic-gradient(#242019 0% 25%, #FFFDF8 0% 50%) 50%/8px 8px"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div style="display:flex; gap:10px">
+          <div class="btn">ดาวน์โหลด PDF</div>
+          <div class="btn">พิมพ์</div>
+          <div class="btn">ส่งอีเมลให้ผู้เข้าอบรม</div>
+        </div>
+      </div>
+
+      <div style="display:flex; flex-direction:column; gap:22px">
+
+        <div style="display:flex; flex-direction:column; gap:14px">
+          <div class="disp" style="font-size:19px; font-weight:600">สรุปการออกวุฒิบัตร</div>
+          <div class="card" style="display:flex; flex-direction:column">
+            <div style="display:flex; align-items:baseline; justify-content:space-between; padding:15px 22px; border-bottom:1px solid #EFE8DA">
+              <span style="font-size:15.5px">ผ่านเกณฑ์ ออกแล้ว</span><span class="n" style="font-size:19px; font-weight:600; color:#2C5240">52</span></div>
+            <div style="display:flex; align-items:baseline; justify-content:space-between; padding:15px 22px; border-bottom:1px solid #EFE8DA">
+              <span style="font-size:15.5px">รอสอบซ่อม</span><span class="n" style="font-size:19px; font-weight:600; color:#8A6A1E">4</span></div>
+            <div style="display:flex; align-items:baseline; justify-content:space-between; padding:15px 22px; border-bottom:1px solid #EFE8DA">
+              <span style="font-size:15.5px">ชั่วโมงเข้าอบรมไม่ครบ</span><span class="n" style="font-size:19px; font-weight:600; color:#A8342A">3</span></div>
+            <div style="display:flex; align-items:baseline; justify-content:space-between; padding:15px 22px">
+              <span style="font-size:15.5px">ไม่มาอบรม</span><span class="n" style="font-size:19px; font-weight:600; color:#8A7F68">1</span></div>
+          </div>
+        </div>
+
+        <div style="display:flex; flex-direction:column; gap:14px">
+          <div class="disp" style="font-size:19px; font-weight:600">หน้าตรวจสอบสาธารณะ</div>
+          <div class="card" style="display:flex; flex-direction:column; padding:20px 22px; gap:13px">
+            <div style="font-size:15px; color:#6E6555; line-height:1.6">คนภายนอกสแกนรหัสบนวุฒิบัตรแล้วเห็นเท่านี้ ไม่ต้องเข้าสู่ระบบ</div>
+            <div style="display:flex; flex-direction:column; gap:9px; padding:16px 18px; background:#F2ECDF; border-left:3px solid #2C5240">
+              <div style="display:flex; justify-content:space-between; gap:12px; font-size:15.5px"><span class="lbl">ชื่อ</span><span style="font-weight:500">นายสมชาย โดดี</span></div>
+              <div style="display:flex; justify-content:space-between; gap:12px; font-size:15.5px"><span class="lbl">หลักสูตร</span><span style="font-weight:500">Safety Leadership</span></div>
+              <div style="display:flex; justify-content:space-between; gap:12px; font-size:15.5px"><span class="lbl">ระยะเวลา</span><span class="n" style="font-weight:500">6 ชั่วโมง</span></div>
+              <div style="display:flex; justify-content:space-between; gap:12px; font-size:15.5px"><span class="lbl">วันที่อบรม</span><span class="n" style="font-weight:500">15 มิ.ย. 2569</span></div>
+              <div style="display:flex; justify-content:space-between; gap:12px; font-size:15.5px; padding-top:9px; border-top:1px solid #E3DAC7"><span class="lbl">สถานะ</span><span style="font-weight:600; color:#2C5240">ใช้ได้</span></div>
+            </div>
+            <div style="font-size:14px; color:#8A7F68; line-height:1.6">ไม่แสดงคะแนนสอบ ไม่แสดงเลขบัตรประชาชน และไม่แสดงชื่อบริษัทลูกค้า</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+</x-dc>
+</body>
+</html>

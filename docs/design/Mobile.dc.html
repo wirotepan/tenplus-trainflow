@@ -1,0 +1,119 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@400;500;600&family=Trirong:wght@500;600&display=swap">
+  <style>
+    body { margin:0; font-family:"IBM Plex Sans Thai",system-ui,sans-serif;
+           background:#F7F3EC; color:#242019; font-size:16px; line-height:1.7; -webkit-font-smoothing:antialiased; }
+    a { color:#2C5240; } a:hover { color:#1B3628; }
+    .n { font-variant-numeric:tabular-nums; }
+    .disp { font-family:"Trirong","IBM Plex Sans Thai",serif; }
+    .phone { width:390px; background:#FDFBF7; border:1px solid #E9E1D1; display:flex; flex-direction:column; }
+    .phead { padding:20px 22px 16px; background:#2C5240; color:#E9E3D6; display:flex; flex-direction:column; gap:2px; }
+    .pbody { padding:22px; display:flex; flex-direction:column; gap:16px; flex:1 1 auto; }
+    .item { border:1px solid #E9E1D1; padding:18px 20px; display:flex; flex-direction:column; gap:9px; background:#FFFDF8; }
+    .big { padding:15px 20px; background:#2C5240; color:#F7F3EC; font-size:17px; font-weight:600; text-align:center; }
+    .ghost { padding:15px 20px; border:1px solid #D8CFBD; color:#4A4438; font-size:17px; font-weight:500; text-align:center; }
+    .lbl { font-size:14px; color:#8A7F68; line-height:1.5; }
+  </style>
+</helmet>
+
+<div style="padding:38px 40px; display:flex; gap:34px; background:#F7F3EC; align-items:flex-start; flex-wrap:wrap">
+
+  <div style="display:flex; flex-direction:column; gap:12px">
+    <div class="disp" style="font-size:18px; font-weight:600">วิทยากร — รับงาน</div>
+    <div class="phone">
+      <div class="phead">
+        <div class="disp" style="font-size:18px; font-weight:600">อ.สมชาย โดดี</div>
+        <div style="font-size:13.5px; color:#9DB3A5">วิทยากร · Safety Skill Center</div>
+      </div>
+      <div class="pbody">
+        <div style="font-size:17px; font-weight:600">งานที่รอคุณตอบรับ</div>
+        <div class="item" style="border-left:3px solid #B08829">
+          <div class="disp" style="font-size:19px; font-weight:600; line-height:1.4">Risk Assessment</div>
+          <div style="font-size:15.5px; color:#6E6555; line-height:1.65">Delta Co., Ltd.<br>17 มิถุนายน 2569 · เช้าและบ่าย<br>นิคมอุตสาหกรรมบางปู สมุทรปราการ</div>
+          <div style="display:flex; justify-content:space-between; padding-top:10px; border-top:1px solid #EFE8DA">
+            <span class="lbl">ค่าตอบแทน</span><span class="n" style="font-size:18px; font-weight:600">6,000 บาท</span></div>
+          <div style="font-size:14px; color:#8A6A1E; line-height:1.6">กรุณาตอบภายใน 46 ชั่วโมง มิฉะนั้นระบบจะปลดวันที่จองไว้</div>
+          <div style="display:flex; flex-direction:column; gap:9px; margin-top:4px">
+            <div class="big">รับงานนี้</div>
+            <div class="ghost">ไม่สะดวก</div>
+          </div>
+        </div>
+        <div style="font-size:17px; font-weight:600; margin-top:4px">ตารางงานของฉัน</div>
+        <div class="item">
+          <div style="display:flex; justify-content:space-between; align-items:baseline; gap:12px">
+            <span class="disp" style="font-size:18px; font-weight:600">Safety Leadership</span>
+            <span style="font-size:14px; color:#B08829; font-weight:600">วันนี้</span></div>
+          <div style="font-size:15.5px; color:#6E6555; line-height:1.65">ABC Manufacturing · 09:00–16:00 น.<br>เริ่มอบรมแล้วเมื่อ 09:05 น.</div>
+          <div style="display:flex; gap:9px; margin-top:4px">
+            <div class="ghost" style="flex:1 1 0; padding:12px">แผนที่</div>
+            <div class="ghost" style="flex:1 1 0; padding:12px">โทรผู้ประสาน</div>
+          </div>
+          <div class="big" style="margin-top:2px">บันทึกจบการอบรม</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="display:flex; flex-direction:column; gap:12px">
+    <div class="disp" style="font-size:18px; font-weight:600">ผู้เข้าอบรม — เช็คชื่อ</div>
+    <div class="phone">
+      <div class="phead">
+        <div class="disp" style="font-size:18px; font-weight:600">เช็คชื่อรอบเช้า</div>
+        <div style="font-size:13.5px; color:#9DB3A5">Safety Leadership · 15 มิถุนายน 2569</div>
+      </div>
+      <div class="pbody" style="align-items:center; text-align:center">
+        <div style="width:180px; height:180px; background:repeating-conic-gradient(#242019 0% 25%, #FFFDF8 0% 50%) 50%/19px 19px; border:8px solid #FFFDF8; box-shadow:0 0 0 1px #E9E1D1; margin-top:6px"></div>
+        <div style="font-size:15.5px; color:#6E6555; line-height:1.65">สแกนรหัสที่หน้าห้อง<br>หรือกรอกรหัส 6 หลักด้านล่าง</div>
+        <div class="n disp" style="font-size:34px; font-weight:600; letter-spacing:.16em; padding:12px 20px; border:1px solid #E9E1D1; background:#FFFDF8; width:100%">418 302</div>
+        <div style="font-size:14px; color:#8A7F68">รหัสเปลี่ยนใหม่ทุก 30 วินาที</div>
+        <div style="width:100%; padding-top:16px; border-top:1px solid #EFE8DA; margin-top:auto; display:flex; flex-direction:column; gap:8px">
+          <div style="display:flex; justify-content:space-between"><span class="lbl">เช็คชื่อแล้ว</span><span class="n" style="font-size:17px; font-weight:600">58 / 60 คน</span></div>
+          <div style="height:5px; background:#E9E1D1"><div style="width:96%; height:100%; background:#2C5240"></div></div>
+          <div style="font-size:14px; color:#8A7F68; line-height:1.6; text-align:left">เปิดเช็คชื่อ 08:30–09:30 น. สแกนนอกเวลาระบบจะแจ้งเหตุผลให้ทราบ</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="display:flex; flex-direction:column; gap:12px">
+    <div class="disp" style="font-size:18px; font-weight:600">ผู้เข้าอบรม — ผลการอบรม</div>
+    <div class="phone">
+      <div class="phead">
+        <div class="disp" style="font-size:18px; font-weight:600">นายสมชาย โดดี</div>
+        <div style="font-size:13.5px; color:#9DB3A5">ABC Manufacturing</div>
+      </div>
+      <div class="pbody">
+        <div style="text-align:center; padding:20px 0 8px; display:flex; flex-direction:column; gap:8px; align-items:center">
+          <svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="#2C5240" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 10 12 5 2 10l10 5 10-5Z"></path><path d="M6 12v5c0 1.7 2.7 3 6 3s6-1.3 6-3v-5"></path></svg>
+          <div class="disp" style="font-size:23px; font-weight:600; line-height:1.35">คุณผ่านการอบรมแล้ว</div>
+          <div style="font-size:15.5px; color:#6E6555">Safety Leadership · 6 ชั่วโมง</div>
+        </div>
+        <div class="item" style="gap:12px">
+          <div style="display:flex; justify-content:space-between; align-items:baseline"><span class="lbl">ชั่วโมงเข้าอบรม</span>
+            <span><span class="n" style="font-size:17px; font-weight:600">100%</span> <span style="font-size:14px; color:#2C5240; font-weight:600">ผ่าน</span></span></div>
+          <div style="display:flex; justify-content:space-between; align-items:baseline"><span class="lbl">คะแนนหลังอบรม</span>
+            <span><span class="n" style="font-size:17px; font-weight:600">85%</span> <span style="font-size:14px; color:#2C5240; font-weight:600">ผ่าน</span></span></div>
+          <div style="display:flex; justify-content:space-between; align-items:baseline; padding-top:10px; border-top:1px solid #EFE8DA">
+            <span class="lbl">คะแนนก่อนอบรม</span><span class="n" style="font-size:17px; font-weight:600">45%</span></div>
+          <div style="font-size:14px; color:#8A7F68">พัฒนาการเพิ่มขึ้น 40 จุด</div>
+        </div>
+        <div class="big">ดาวน์โหลดวุฒิบัตร</div>
+        <div class="n" style="font-size:14px; color:#8A7F68; text-align:center">เลขที่ SSC-2569-00125-0001</div>
+        <div class="ghost">ทำแบบประเมินความพึงพอใจ</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</x-dc>
+</body>
+</html>

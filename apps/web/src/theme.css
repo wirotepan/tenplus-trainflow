@@ -1,101 +1,112 @@
 /**
- * TrainFlow — Design system: variant B "Soft SaaS" · palette v2 "Forest + Neutral"
- * โครง/มุม/เงา/ฟอนต์ ยกจาก DCS-TMS · **สีปรับใหม่ 2026-08-24** ตามฟีดแบ็ก "เขียวเกินไป"
+ * TrainFlow — Design system (LOCKED 2026-08-25): "กระดาษสถาบัน" (Warm paper)
+ * ลูกค้าเลือกทิศทางนี้จาก 3 ทางเลือก · ต้นแบบ: docs/design/*.dc.html
+ * เหตุผลเบื้องหลังตัวเลขทั้งหมด: docs/spec/ux-research-2026.md
  *
- *   เดิม: teal #0E8C82 + พื้นผิวเจือเขียวทุกชิ้น (--surface-2 #EEF4F2, --border #E1E9E7)
- *   ใหม่: **เขียวเฉพาะแบรนด์/ปุ่ม/สถานะผ่าน · พื้นผิวเป็นเทากลางสะอาด**
- *         อ้างอิงสีจากงานออกแบบของลูกค้า (docs/spec/uxui.jpg):
- *         แถบเมนู #002917 · ปุ่มหลัก #17852F · พื้นผิว #F0F4F5 / #E8ECED
- * ต้นแบบภาพ: docs/trainflow-prototype.html · อ้างอิงเดิม: docs/spec/tms-prototype-reference.html
- * หน้าเว็บ React ทุกหน้าใช้ token เหล่านี้ — สี/มุม/เงา/ฟอนต์ มาจากที่นี่ที่เดียว
- *
- * กติกาสำคัญ: สี "สถานะ/แจ้งเตือน" (--st-*, --alert) แยกจาก --accent
- * ห้ามเอา accent (teal) ไปแทนสีสถานะ แดง/เหลือง/เขียว/น้ำเงิน
- *
- * ความหมายของสถานะใน TrainFlow (ชื่อ token คงเดิมจาก TMS เพื่อให้ยก component มาใช้ได้ตรง ๆ):
- *   --st-run    (น้ำเงิน) = กำลังอบรม · กำลังดำเนินการ        [IN_PROGRESS]
- *   --st-wait   (แดง)     = รอวิทยากรยืนยัน · ไม่ผ่านเกณฑ์ · เลยกำหนด
- *   --st-unload (เหลือง)  = จองชั่วคราว (Tentative) · ยังไม่ครบ · รอตรวจ
- *   --st-done   (เขียว)   = ยืนยันแล้ว · ผ่าน · ออกวุฒิบัตรแล้ว · ปิดงาน
- *   --st-idle   (เทา)     = ร่าง · ยกเลิก · ไม่มีข้อมูล
+ * กติกาที่ห้ามละเมิด
+ *  1) ตัวเนื้อหา 16px · ระยะบรรทัด 1.7 · เล็กสุดในระบบ 13px
+ *     (อักษรไทยมีวรรณยุกต์บน-ล่าง ต้องการระยะมากกว่าละติน 10-15%)
+ *  2) ฟอนต์ไทยไม่มีหัว IBM Plex Sans Thai สำหรับ UI · Trirong เฉพาะหัวเรื่องและเอกสาร
+ *  3) สีบอกสถานะเท่านั้น — แดง=ต้องจัดการ ทอง=กำลังดำเนินการ เขียว=เรียบร้อย
+ *     ห้ามเอา --accent (เขียวแบรนด์) ไปแทนสีสถานะ
+ *  4) แบ่งกลุ่มด้วยที่ว่างและเส้นบางก่อน ใช้กล่องเฉพาะที่ต้องแยกจริง
+ *  5) --gold ใช้เฉพาะของที่เป็นเกียรติบัตร/เอกสารทางการ ไม่ใช่ของตกแต่ง
  */
 
 :root {
-  /* fonts + spacing */
-  --font-ui: "Sarabun", "Noto Sans Thai", "Leelawadee UI", Tahoma, system-ui, -apple-system, "Segoe UI", sans-serif;
-  --font-data: ui-monospace, "SF Mono", "Cascadia Mono", Consolas, "Sarabun", monospace;
+  /* ---------- typography ---------- */
+  --font-ui: "IBM Plex Sans Thai", "Noto Sans Thai", system-ui, -apple-system, sans-serif;
+  --font-display: "Trirong", "IBM Plex Sans Thai", serif;   /* หัวเรื่อง + เอกสาร */
   --font: var(--font-ui);
   --num-font: var(--font-ui);
-  --sp: 8px;
-  --dur: .18s;
 
-  /* variant B shape language: มุมมน, เงานุ่ม, เส้นบาง */
-  --radius: 16px;
-  --radius-sm: 10px;
-  --bw: 1px;
-  --shadow: 0 1px 2px var(--shadow-c1), 0 10px 30px -14px var(--shadow-c2);
-  --label-tt: none;
-  --label-ls: .01em;
+  --fs-body: 16px;      --lh-body: 1.7;    /* เนื้อหาหลัก */
+  --fs-sm: 15px;        --lh-sm: 1.6;      /* ตารางและรายการ */
+  --fs-label: 14px;     --lh-label: 1.5;   /* ป้ายกำกับ */
+  --fs-micro: 13px;                        /* เล็กที่สุดที่อนุญาต */
+  --fs-h1: 29px;        --fs-h2: 19px;     --lh-head: 1.35;
+  --fs-metric: 38px;                       /* ตัวเลขสรุป */
+
+  /* ---------- shape ---------- */
+  --radius: 3px; --radius-sm: 3px; --bw: 1px;
+  --shadow: none;                          /* ทิศทางนี้ไม่ใช้เงา ใช้เส้นแทน */
+  --sp: 8px; --dur: .18s;
+  --label-ls: .02em; --eyebrow-ls: .14em;
 }
 
-/* ---------- STATUS + ALERT tokens (แยกจาก accent, ต่อ theme) ---------- */
+/* ---------- STATUS (แยกจาก accent เสมอ) ---------- */
 :root, :root[data-theme="light"] {
-  --st-run: #2563EB;    --st-run-bg: #DBEAFE;    --st-run-fg: #1E40AF;   /* วิ่ง */
-  --st-wait: #DC2626;   --st-wait-bg: #FEE2E2;   --st-wait-fg: #991B1B;  /* รอลง (แดง) */
-  --st-unload: #D97706; --st-unload-bg: #FEF3C7; --st-unload-fg: #92400E;/* กำลังลง (เหลือง) */
-  --st-done: #16A34A;   --st-done-bg: #DCFCE7;   --st-done-fg: #166534;  /* เสร็จ/ว่าง (เขียว) */
-  --st-idle: #64748B;   --st-idle-bg: #EEF1F5;   --st-idle-fg: #475569;  /* ไม่รายงาน */
-  --alert: #DC2626;     --alert-bg: #FEE2E2;     --alert-fg: #991B1B;
-  --focus: #2563EB;
+  --st-wait: #A8342A;   --st-wait-bg: #F6E7E4;   --st-wait-fg: #8A2B22;  /* ต้องจัดการ */
+  --st-unload: #B08829; --st-unload-bg: #F6EEDA; --st-unload-fg: #8A6A1E;/* กำลังดำเนินการ */
+  --st-done: #2C5240;   --st-done-bg: #E4EBE5;   --st-done-fg: #244636;  /* เรียบร้อย */
+  --st-run: #3B5E7A;    --st-run-bg: #E5EBF0;    --st-run-fg: #2F4C63;   /* ข้อมูล */
+  --st-idle: #8A7F68;   --st-idle-bg: #F2ECDF;   --st-idle-fg: #6E6555;  /* ร่าง/ไม่มีข้อมูล */
+  --alert: #A8342A;     --alert-bg: #F6E7E4;     --alert-fg: #8A2B22;
+  --focus: #2C5240;
 }
 :root[data-theme="dark"] {
-  --st-run: #60A5FA;    --st-run-bg: rgba(59,130,246,.18);  --st-run-fg: #93C5FD;
-  --st-wait: #F87171;   --st-wait-bg: rgba(239,68,68,.18);  --st-wait-fg: #FCA5A5;
-  --st-unload: #FBBF24; --st-unload-bg: rgba(217,119,6,.20);--st-unload-fg: #FCD34D;
-  --st-done: #4ADE80;   --st-done-bg: rgba(22,163,74,.20);  --st-done-fg: #86EFAC;
-  --st-idle: #94A3B8;   --st-idle-bg: rgba(148,163,184,.15);--st-idle-fg: #CBD5E1;
-  --alert: #F87171;     --alert-bg: rgba(239,68,68,.16);    --alert-fg: #FCA5A5;
-  --focus: #60A5FA;
+  --st-wait: #E08076;   --st-wait-bg: rgba(168,52,42,.20);  --st-wait-fg: #EFA79E;
+  --st-unload: #D9B45A; --st-unload-bg: rgba(176,136,41,.20);--st-unload-fg: #E7C87F;
+  --st-done: #7BC098;   --st-done-bg: rgba(44,82,64,.30);   --st-done-fg: #9BD3B1;
+  --st-run: #86AECD;    --st-run-bg: rgba(59,94,122,.22);   --st-run-fg: #A8C6DC;
+  --st-idle: #A2967F;   --st-idle-bg: rgba(162,150,127,.16);--st-idle-fg: #BCB19B;
+  --alert: #E08076;     --alert-bg: rgba(168,52,42,.18);    --alert-fg: #EFA79E;
+  --focus: #7BC098;
 }
 
-/* ---------- NEUTRALS + ACCENT (variant B, teal) ---------- */
+/* ---------- PAPER + INK + ACCENT ---------- */
 :root, :root[data-theme="light"] {
-  --bg: #F4F6F7; --surface: #FFFFFF; --surface-2: #F0F4F5; --surface-3: #E8ECED;
-  --border: #E1E6E8; --border-strong: #C6CFD2;
-  --text: #161D20; --text-dim: #59666B; --text-faint: #8A979C;
-  --accent: #17852F; --accent-fg: #FFFFFF; --accent-weak: #E4F2E7; --accent-line: #17852F;
-  --accent-ink: #12692A;              /* เขียวเข้มสำหรับตัวอักษร/ลิงก์ (คอนทราสต์พอบนพื้นขาว) */
-  --brand-deep: #002917; --brand-deep-fg: #E8F0EB;   /* แถบเมนูซ้าย + หน้าเข้าสู่ระบบ */
-  --gold: #B08829; --gold-weak: #F6EEDA;             /* วุฒิบัตร/ของที่เป็นเกียรติบัตร */
-  --shadow-c1: rgba(18,28,32,.05); --shadow-c2: rgba(18,30,36,.14);
+  --bg: #F7F3EC;            /* กระดาษ */
+  --surface: #FDFBF7;       /* การ์ด/ตาราง */
+  --surface-2: #F2ECDF;     /* หัวตาราง/แถบเน้น */
+  --surface-3: #EFE8DA;
+  --border: #E9E1D1; --border-strong: #D8CFBD; --border-hair: #EFE8DA;
+  --text: #242019; --text-dim: #6E6555; --text-faint: #8A7F68;
+  --accent: #2C5240; --accent-fg: #F7F3EC; --accent-weak: #E4EBE5; --accent-line: #2C5240;
+  --accent-ink: #244636;
+  --brand-deep: #2C5240; --brand-deep-fg: #E9E3D6; --brand-deep-dim: #9DB3A5;
+  --gold: #B08829; --gold-weak: #F6EEDA;   /* เส้นคั่นหัวเรื่อง · วุฒิบัตร · ของที่เป็นทางการ */
+  --shadow-c1: transparent; --shadow-c2: transparent;
 }
 :root[data-theme="dark"] {
-  --bg: #101518; --surface: #171D20; --surface-2: #1E2529; --surface-3: #273034;
-  --border: #2A3337; --border-strong: #3C474C;
-  --text: #E7EDEF; --text-dim: #97A5AA; --text-faint: #6B787D;
-  --accent: #3AAE52; --accent-fg: #06180C; --accent-weak: rgba(58,174,82,.15); --accent-line: #3AAE52;
-  --accent-ink: #6BD182;
-  --brand-deep: #0A1F16; --brand-deep-fg: #DCE8E1;
-  --gold: #D9B45A; --gold-weak: rgba(217,180,90,.14);
-  --shadow-c1: rgba(0,0,0,.3); --shadow-c2: rgba(0,0,0,.52);
+  --bg: #17150F; --surface: #201D16; --surface-2: #2A2619; --surface-3: #332E20;
+  --border: #38321F; --border-strong: #4C4530; --border-hair: #2F2A1C;
+  --text: #EDE6D8; --text-dim: #B3A992; --text-faint: #8A8069;
+  --accent: #5F9B78; --accent-fg: #101B15; --accent-weak: rgba(95,155,120,.16); --accent-line: #5F9B78;
+  --accent-ink: #8FC3A3;
+  --brand-deep: #1B3628; --brand-deep-fg: #DDE7DF; --brand-deep-dim: #86A090;
+  --gold: #D9B45A; --gold-weak: rgba(217,180,90,.13);
+  --shadow-c1: transparent; --shadow-c2: transparent;
 }
 
-/* honor OS dark preference when no explicit data-theme is set */
+/* ตามธีมของเครื่องผู้ใช้เมื่อไม่ได้เลือกเอง */
 @media (prefers-color-scheme: dark) {
-  :root:not([data-theme]) {
-    --st-run: #60A5FA;    --st-run-bg: rgba(59,130,246,.18);  --st-run-fg: #93C5FD;
-    --st-wait: #F87171;   --st-wait-bg: rgba(239,68,68,.18);  --st-wait-fg: #FCA5A5;
-    --st-unload: #FBBF24; --st-unload-bg: rgba(217,119,6,.20);--st-unload-fg: #FCD34D;
-    --st-done: #4ADE80;   --st-done-bg: rgba(22,163,74,.20);  --st-done-fg: #86EFAC;
-    --st-idle: #94A3B8;   --st-idle-bg: rgba(148,163,184,.15);--st-idle-fg: #CBD5E1;
-    --alert: #F87171;     --alert-bg: rgba(239,68,68,.16);    --alert-fg: #FCA5A5;
-    --focus: #60A5FA;
-    --bg: #101518; --surface: #171D20; --surface-2: #1E2529; --surface-3: #273034;
-    --border: #2A3337; --border-strong: #3C474C;
-    --text: #E7EDEF; --text-dim: #97A5AA; --text-faint: #6B787D;
-    --accent: #3AAE52; --accent-fg: #06180C; --accent-weak: rgba(58,174,82,.15); --accent-line: #3AAE52;
-    --accent-ink: #6BD182; --brand-deep: #0A1F16; --brand-deep-fg: #DCE8E1;
-    --gold: #D9B45A; --gold-weak: rgba(217,180,90,.14);
-    --shadow-c1: rgba(0,0,0,.3); --shadow-c2: rgba(0,0,0,.52);
+  :root:not([data-theme="light"]) {
+    --st-wait: #E08076;   --st-wait-bg: rgba(168,52,42,.20);  --st-wait-fg: #EFA79E;
+    --st-unload: #D9B45A; --st-unload-bg: rgba(176,136,41,.20);--st-unload-fg: #E7C87F;
+    --st-done: #7BC098;   --st-done-bg: rgba(44,82,64,.30);   --st-done-fg: #9BD3B1;
+    --st-run: #86AECD;    --st-run-bg: rgba(59,94,122,.22);   --st-run-fg: #A8C6DC;
+    --st-idle: #A2967F;   --st-idle-bg: rgba(162,150,127,.16);--st-idle-fg: #BCB19B;
+    --alert: #E08076;     --alert-bg: rgba(168,52,42,.18);    --alert-fg: #EFA79E;
+    --focus: #7BC098;
+    --bg: #17150F; --surface: #201D16; --surface-2: #2A2619; --surface-3: #332E20;
+    --border: #38321F; --border-strong: #4C4530; --border-hair: #2F2A1C;
+    --text: #EDE6D8; --text-dim: #B3A992; --text-faint: #8A8069;
+    --accent: #5F9B78; --accent-fg: #101B15; --accent-weak: rgba(95,155,120,.16); --accent-line: #5F9B78;
+    --accent-ink: #8FC3A3;
+    --brand-deep: #1B3628; --brand-deep-fg: #DDE7DF; --brand-deep-dim: #86A090;
+    --gold: #D9B45A; --gold-weak: rgba(217,180,90,.13);
   }
 }
+
+/* ---------- base ---------- */
+body {
+  font-family: var(--font);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  background: var(--bg);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+}
+.num { font-variant-numeric: tabular-nums; font-feature-settings: "tnum" 1; }
+.display { font-family: var(--font-display); line-height: var(--lh-head); }

@@ -1,0 +1,154 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@400;500;600&family=Trirong:wght@500;600&display=swap">
+  <style>
+    body { margin:0; font-family:"IBM Plex Sans Thai",system-ui,sans-serif;
+           background:#F7F3EC; color:#242019; font-size:16px; line-height:1.7;
+           -webkit-font-smoothing:antialiased; }
+    a { color:#2C5240; } a:hover { color:#1B3628; }
+    .n { font-variant-numeric:tabular-nums; }
+    .disp { font-family:"Trirong","IBM Plex Sans Thai",serif; }
+    .side { display:flex; flex-direction:column; gap:2px; padding:28px 16px; background:#2C5240; color:#E9E3D6; }
+    .snav { padding:9px 12px; font-size:15px; color:#C3D2C8; }
+    .snav-on { padding:9px 12px; border-radius:3px; background:#F7F3EC; color:#2C5240; font-size:15px; font-weight:600; }
+    .card { background:#FDFBF7; border:1px solid #E9E1D1; }
+    .btn { padding:9px 16px; border:1px solid #D8CFBD; border-radius:3px; font-size:15px; color:#5A5245; background:#FDFBF7; }
+    .btn-p { padding:9px 18px; border-radius:3px; background:#2C5240; color:#F7F3EC; font-size:15px; font-weight:600; }
+    .lbl { font-size:14px; color:#8A7F68; line-height:1.5; }
+    .rule { padding-bottom:18px; border-bottom:2px solid #B08829; }
+    .th { font-size:13.5px; color:#8A7F68; letter-spacing:.02em; }
+    .td { font-size:15.5px; }
+    .sub { color:#6E6555; }
+  </style>
+</helmet>
+
+<div style="display:grid; grid-template-columns:212px 1fr; min-height:880px; background:#F7F3EC">
+  <div class="side">
+    <div style="display:flex; flex-direction:column; gap:2px; padding:0 8px 24px">
+      <div class="disp" style="font-size:20px; font-weight:600; letter-spacing:.01em">TrainFlow</div>
+      <div style="font-size:12.5px; color:#9DB3A5; line-height:1.5; letter-spacing:.04em">SAFETY SKILL CENTER</div>
+    </div>
+    <div class="snav">ภาพรวม</div>
+    <div class="snav">งานฝึกอบรม</div>
+    <div class="snav-on">ปฏิทินวิทยากร</div>
+    <div class="snav">ผู้เข้าอบรม</div>
+    <div class="snav">วุฒิบัตร</div>
+    <div class="snav">การเงิน</div>
+    <div class="snav">ข้อมูลหลัก</div>
+  </div>
+  <div style="padding:34px 46px 46px; display:flex; flex-direction:column; gap:28px">
+
+    <div class="rule" style="display:flex; align-items:flex-end; justify-content:space-between; gap:24px">
+      <div style="display:flex; flex-direction:column; gap:2px">
+        <div class="n" style="font-size:12.5px; letter-spacing:.14em; color:#8A7F68">TR-2026-00123</div>
+        <div class="disp" style="font-size:29px; font-weight:600; line-height:1.35">จองวิทยากร</div>
+        <div style="font-size:15px; color:#6E6555">Risk Assessment · 17 มิถุนายน 2569 · รอบเช้าและบ่าย · ต้องการวิทยากร 1 คน</div>
+      </div>
+      <div class="btn">ดูปฏิทินรวม</div>
+    </div>
+
+    <div style="display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:24px; align-items:start">
+
+      <div style="display:flex; flex-direction:column; gap:14px">
+        <div style="display:flex; align-items:baseline; justify-content:space-between">
+          <span class="disp" style="font-size:19px; font-weight:600">เลือกได้</span>
+          <span style="font-size:14.5px; color:#8A7F68">สอนหลักสูตรนี้ได้และว่าง · 3 คน</span>
+        </div>
+
+        <div class="card" style="border-color:#2C5240; display:flex; flex-direction:column; gap:12px; padding:20px 22px">
+          <div style="display:flex; align-items:baseline; justify-content:space-between; gap:14px">
+            <span style="font-size:17px; font-weight:600">อ.สมชาย โดดี</span>
+            <span style="font-size:14px; color:#2C5240; font-weight:600">ว่างทั้งสองรอบ</span>
+          </div>
+          <div style="font-size:15px; color:#6E6555; line-height:1.6">จป.วิชาชีพ · ประสบการณ์ 14 ปี · เคยสอนหลักสูตรนี้ 38 ครั้ง</div>
+          <div style="display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:0; padding-top:6px; border-top:1px solid #EFE8DA">
+            <div style="display:flex; flex-direction:column; gap:1px; padding-right:16px">
+              <span class="lbl">คะแนนประเมิน</span><span class="n" style="font-size:18px; font-weight:600">4.8</span></div>
+            <div style="display:flex; flex-direction:column; gap:1px; padding:0 16px; border-left:1px solid #EFE8DA">
+              <span class="lbl">ผู้เรียนผ่าน</span><span class="n" style="font-size:18px; font-weight:600">96%</span></div>
+            <div style="display:flex; flex-direction:column; gap:1px; padding-left:16px; border-left:1px solid #EFE8DA">
+              <span class="lbl">ค่าตอบแทน</span><span class="n" style="font-size:18px; font-weight:600">6,000</span></div>
+          </div>
+          <div class="btn-p" style="text-align:center; margin-top:2px">จองชั่วคราว · ถือสิทธิ์ถึง 17 มิ.ย. 09:00 น.</div>
+        </div>
+
+        <div class="card" style="display:flex; flex-direction:column; gap:12px; padding:20px 22px">
+          <div style="display:flex; align-items:baseline; justify-content:space-between; gap:14px">
+            <span style="font-size:17px; font-weight:600">อ.วิภา สุขสวัสดิ์</span>
+            <span style="font-size:14px; color:#2C5240; font-weight:600">ว่างทั้งสองรอบ</span>
+          </div>
+          <div style="font-size:15px; color:#6E6555; line-height:1.6">จป.วิชาชีพ · ประสบการณ์ 9 ปี · เคยสอนหลักสูตรนี้ 21 ครั้ง</div>
+          <div style="display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:0; padding-top:6px; border-top:1px solid #EFE8DA">
+            <div style="display:flex; flex-direction:column; gap:1px; padding-right:16px">
+              <span class="lbl">คะแนนประเมิน</span><span class="n" style="font-size:18px; font-weight:600">4.6</span></div>
+            <div style="display:flex; flex-direction:column; gap:1px; padding:0 16px; border-left:1px solid #EFE8DA">
+              <span class="lbl">ผู้เรียนผ่าน</span><span class="n" style="font-size:18px; font-weight:600">94%</span></div>
+            <div style="display:flex; flex-direction:column; gap:1px; padding-left:16px; border-left:1px solid #EFE8DA">
+              <span class="lbl">ค่าตอบแทน</span><span class="n" style="font-size:18px; font-weight:600">5,500</span></div>
+          </div>
+          <div class="btn" style="text-align:center; margin-top:2px">จองชั่วคราว</div>
+        </div>
+
+        <div class="card" style="display:flex; flex-direction:column; gap:10px; padding:20px 22px">
+          <div style="display:flex; align-items:baseline; justify-content:space-between; gap:14px">
+            <span style="font-size:17px; font-weight:600">อ.ธนา ประเสริฐ</span>
+            <span style="font-size:14px; color:#8A6A1E; font-weight:600">ว่างเฉพาะรอบเช้า</span>
+          </div>
+          <div style="font-size:15px; color:#6E6555; line-height:1.6">ติดงานรอบบ่าย หากเลือกคนนี้ต้องหาวิทยากรอีกคนมาสอนรอบบ่าย</div>
+          <div class="btn" style="text-align:center; margin-top:2px">จองเฉพาะรอบเช้า</div>
+        </div>
+      </div>
+
+      <div style="display:flex; flex-direction:column; gap:14px">
+        <div style="display:flex; align-items:baseline; justify-content:space-between">
+          <span class="disp" style="font-size:19px; font-weight:600">เลือกไม่ได้</span>
+          <span style="font-size:14.5px; color:#8A7F68">พร้อมเหตุผล · 4 คน</span>
+        </div>
+
+        <div class="card" style="display:flex; flex-direction:column; gap:9px; padding:18px 22px; border-left:3px solid #A8342A">
+          <div style="display:flex; align-items:baseline; justify-content:space-between; gap:14px">
+            <span style="font-size:16.5px; font-weight:600; color:#6E6555">อ.กมล รุ่งเรือง</span>
+            <span style="font-size:14px; color:#A8342A">ติดงานแล้ว</span></div>
+          <div style="font-size:15px; color:#6E6555; line-height:1.6">รับงาน TR-2026-00129 วันที่ 17 มิถุนายน ทั้งเช้าและบ่าย</div>
+        </div>
+
+        <div class="card" style="display:flex; flex-direction:column; gap:9px; padding:18px 22px; border-left:3px solid #A8342A">
+          <div style="display:flex; align-items:baseline; justify-content:space-between; gap:14px">
+            <span style="font-size:16.5px; font-weight:600; color:#6E6555">อ.ณัฐพล ศรีสุข</span>
+            <span style="font-size:14px; color:#A8342A">ไม่มีในทะเบียนหลักสูตร</span></div>
+          <div style="font-size:15px; color:#6E6555; line-height:1.6">ยังไม่ได้กำหนดว่าสอน Risk Assessment ได้ — เพิ่มในทะเบียนแล้วจะเลือกได้ทันที</div>
+        </div>
+
+        <div class="card" style="display:flex; flex-direction:column; gap:9px; padding:18px 22px; border-left:3px solid #A8342A">
+          <div style="display:flex; align-items:baseline; justify-content:space-between; gap:14px">
+            <span style="font-size:16.5px; font-weight:600; color:#6E6555">อ.สุนีย์ วัฒนา</span>
+            <span style="font-size:14px; color:#A8342A">คุณวุฒิหมดอายุ</span></div>
+          <div style="font-size:15px; color:#6E6555; line-height:1.6">ใบรับรองวิทยากรหมดอายุ 31 พฤษภาคม 2569 — ต่ออายุแล้วกลับมาเลือกได้</div>
+        </div>
+
+        <div class="card" style="display:flex; flex-direction:column; gap:9px; padding:18px 22px; border-left:3px solid #B08829">
+          <div style="display:flex; align-items:baseline; justify-content:space-between; gap:14px">
+            <span style="font-size:16.5px; font-weight:600; color:#6E6555">อ.ประเสริฐ ใจงาม</span>
+            <span style="font-size:14px; color:#8A6A1E">แจ้งวันไม่ว่าง</span></div>
+          <div style="font-size:15px; color:#6E6555; line-height:1.6">แจ้งลาระหว่างวันที่ 15–19 มิถุนายน 2569</div>
+        </div>
+
+        <div style="font-size:14.5px; color:#8A7F68; line-height:1.65; padding:2px 4px">
+          ระบบแสดงคนที่เลือกไม่ได้พร้อมเหตุผล เพื่อให้แก้ที่ต้นเหตุได้ทันที
+          ดีกว่าให้ชื่อหายไปเฉย ๆ แล้วผู้ประสานงานต้องไล่โทรถามเอง
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+</x-dc>
+</body>
+</html>

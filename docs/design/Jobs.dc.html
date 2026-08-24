@@ -1,0 +1,109 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@400;500;600&family=Trirong:wght@500;600&display=swap">
+  <style>
+    body { margin:0; font-family:"IBM Plex Sans Thai",system-ui,sans-serif;
+           background:#F7F3EC; color:#242019; font-size:16px; line-height:1.7;
+           -webkit-font-smoothing:antialiased; }
+    a { color:#2C5240; } a:hover { color:#1B3628; }
+    .n { font-variant-numeric:tabular-nums; }
+    .disp { font-family:"Trirong","IBM Plex Sans Thai",serif; }
+    .side { display:flex; flex-direction:column; gap:2px; padding:28px 16px; background:#2C5240; color:#E9E3D6; }
+    .snav { padding:9px 12px; font-size:15px; color:#C3D2C8; }
+    .snav-on { padding:9px 12px; border-radius:3px; background:#F7F3EC; color:#2C5240; font-size:15px; font-weight:600; }
+    .card { background:#FDFBF7; border:1px solid #E9E1D1; }
+    .btn { padding:9px 16px; border:1px solid #D8CFBD; border-radius:3px; font-size:15px; color:#5A5245; background:#FDFBF7; }
+    .btn-p { padding:9px 18px; border-radius:3px; background:#2C5240; color:#F7F3EC; font-size:15px; font-weight:600; }
+    .lbl { font-size:14px; color:#8A7F68; line-height:1.5; }
+    .rule { padding-bottom:18px; border-bottom:2px solid #B08829; }
+    .th { font-size:13.5px; color:#8A7F68; letter-spacing:.02em; }
+    .td { font-size:15.5px; }
+    .sub { color:#6E6555; }
+  </style>
+</helmet>
+
+<div style="display:grid; grid-template-columns:212px 1fr; min-height:880px; background:#F7F3EC">
+  <div class="side">
+    <div style="display:flex; flex-direction:column; gap:2px; padding:0 8px 24px">
+      <div class="disp" style="font-size:20px; font-weight:600; letter-spacing:.01em">TrainFlow</div>
+      <div style="font-size:12.5px; color:#9DB3A5; line-height:1.5; letter-spacing:.04em">SAFETY SKILL CENTER</div>
+    </div>
+    <div class="snav">ภาพรวม</div>
+    <div class="snav-on">งานฝึกอบรม</div>
+    <div class="snav">ปฏิทินวิทยากร</div>
+    <div class="snav">ผู้เข้าอบรม</div>
+    <div class="snav">วุฒิบัตร</div>
+    <div class="snav">การเงิน</div>
+    <div class="snav">ข้อมูลหลัก</div>
+  </div>
+  <div style="padding:34px 46px 46px; display:flex; flex-direction:column; gap:30px">
+
+    <div class="rule" style="display:flex; align-items:flex-end; justify-content:space-between; gap:24px">
+      <div style="display:flex; flex-direction:column; gap:2px">
+        <div style="font-size:12.5px; letter-spacing:.14em; color:#8A7F68">ทะเบียนงาน</div>
+        <div class="disp" style="font-size:29px; font-weight:600; line-height:1.35">งานฝึกอบรมทั้งหมด</div>
+      </div>
+      <div style="display:flex; gap:10px; align-items:center">
+        <div class="btn">ส่งออก Excel</div>
+        <div class="btn-p">สร้างงานอบรม</div>
+      </div>
+    </div>
+
+    <div style="display:flex; gap:12px; align-items:center; flex-wrap:wrap">
+      <div style="flex:1 1 300px; max-width:340px; padding:10px 14px; background:#FDFBF7; border:1px solid #E9E1D1; border-radius:3px; font-size:15px; color:#9A9182">ค้นหาเลขที่งาน หลักสูตร หรือลูกค้า</div>
+      <div class="btn">ทุกสถานะ</div>
+      <div class="btn">ทุกประเภท</div>
+      <div class="btn">มิถุนายน 2569</div>
+      <div style="margin-left:auto; font-size:14.5px; color:#8A7F68">แสดง 1–8 จาก 40 งาน</div>
+    </div>
+
+    <div class="card" style="display:flex; flex-direction:column">
+      <div style="display:grid; grid-template-columns:148px 1fr 176px 118px 128px 86px 108px; gap:18px; padding:13px 22px; background:#F2ECDF" class="th">
+        <div>เลขที่งาน</div><div>หลักสูตร</div><div>ลูกค้า</div><div>วันที่อบรม</div><div>วิทยากร</div><div style="text-align:right">คน</div><div style="text-align:right">รายได้</div>
+      </div>
+      <div style="display:grid; grid-template-columns:148px 1fr 176px 118px 128px 86px 108px; gap:18px; padding:16px 22px; border-bottom:1px solid #EFE8DA; align-items:center" class="td">
+        <div class="n" style="font-weight:500">TR-2026-00125</div><div style="font-weight:500">Safety Leadership</div><div class="sub">ABC Manufacturing</div><div class="n sub">15 มิ.ย.</div><div class="sub">อ.สมชาย</div><div class="n" style="text-align:right">60</div><div class="n" style="text-align:right">42,000</div>
+      </div>
+      <div style="display:grid; grid-template-columns:148px 1fr 176px 118px 128px 86px 108px; gap:18px; padding:16px 22px; border-bottom:1px solid #EFE8DA; align-items:center" class="td">
+        <div class="n" style="font-weight:500">TR-2026-00124</div><div style="font-weight:500">40,000 Awareness</div><div class="sub">รอบสาธารณะ</div><div class="n sub">16 มิ.ย.</div><div class="sub">อ.นภา</div><div class="n" style="text-align:right">30</div><div class="n" style="text-align:right">75,000</div>
+      </div>
+      <div style="display:grid; grid-template-columns:148px 1fr 176px 118px 128px 86px 108px; gap:18px; padding:16px 22px; border-bottom:1px solid #EFE8DA; align-items:center; border-left:3px solid #A8342A; margin-left:-3px; padding-left:19px" class="td">
+        <div class="n" style="font-weight:500">TR-2026-00123</div><div style="font-weight:500">Risk Assessment</div><div class="sub">Delta Co., Ltd.</div><div class="n sub">17 มิ.ย.</div><div style="color:#A8342A">ยังไม่มี</div><div class="n" style="text-align:right">40</div><div class="n" style="text-align:right">65,000</div>
+      </div>
+      <div style="display:grid; grid-template-columns:148px 1fr 176px 118px 128px 86px 108px; gap:18px; padding:16px 22px; border-bottom:1px solid #EFE8DA; align-items:center" class="td">
+        <div class="n" style="font-weight:500">TR-2026-00122</div><div style="font-weight:500">Working at Height</div><div class="sub">Epsilon Co., Ltd.</div><div class="n sub">18 มิ.ย.</div><div class="sub">อ.วิภา</div><div class="n" style="text-align:right">25</div><div class="n" style="text-align:right">66,500</div>
+      </div>
+      <div style="display:grid; grid-template-columns:148px 1fr 176px 118px 128px 86px 108px; gap:18px; padding:16px 22px; border-bottom:1px solid #EFE8DA; align-items:center" class="td">
+        <div class="n" style="font-weight:500">TR-2026-00121</div><div style="font-weight:500">Basic Safety</div><div class="sub">รอบสาธารณะ</div><div class="n sub">20 มิ.ย.</div><div class="sub" style="color:#8A7F68">ยังไม่จอง</div><div class="n" style="text-align:right">55</div><div class="n" style="text-align:right">62,500</div>
+      </div>
+      <div style="display:grid; grid-template-columns:148px 1fr 176px 118px 128px 86px 108px; gap:18px; padding:16px 22px; border-bottom:1px solid #EFE8DA; align-items:center" class="td">
+        <div class="n" style="font-weight:500">TR-2026-00120</div><div style="font-weight:500">Chemical Safety</div><div class="sub">Zeta Co., Ltd.</div><div class="n sub">22 มิ.ย.</div><div class="sub">อ.ธนา</div><div class="n" style="text-align:right">45</div><div class="n" style="text-align:right">58,000</div>
+      </div>
+      <div style="display:grid; grid-template-columns:148px 1fr 176px 118px 128px 86px 108px; gap:18px; padding:16px 22px; border-bottom:1px solid #EFE8DA; align-items:center" class="td">
+        <div class="n" style="font-weight:500">TR-2026-00119</div><div style="font-weight:500">5S for Workplace</div><div class="sub">Eta Co., Ltd.</div><div class="n sub">23 มิ.ย.</div><div class="sub">อ.กมล</div><div class="n" style="text-align:right">50</div><div class="n" style="text-align:right">45,000</div>
+      </div>
+      <div style="display:grid; grid-template-columns:148px 1fr 176px 118px 128px 86px 108px; gap:18px; padding:16px 22px; align-items:center" class="td">
+        <div class="n" style="font-weight:500">TR-2026-00118</div><div style="font-weight:500">การยศาสตร์ในสำนักงาน</div><div class="sub">Theta Group</div><div class="n sub">24 มิ.ย.</div><div class="sub" style="color:#8A7F68">ยังไม่จอง</div><div class="n" style="text-align:right">20</div><div class="sub" style="text-align:right">ร่าง</div>
+      </div>
+    </div>
+
+    <div style="display:flex; align-items:center; gap:8px">
+      <div style="padding:7px 14px; border-radius:3px; background:#2C5240; color:#F7F3EC; font-size:14.5px; font-weight:600">1</div>
+      <div style="padding:7px 14px; border:1px solid #D8CFBD; border-radius:3px; font-size:14.5px; color:#5A5245; background:#FDFBF7">2</div>
+      <div style="padding:7px 14px; border:1px solid #D8CFBD; border-radius:3px; font-size:14.5px; color:#5A5245; background:#FDFBF7">3</div>
+      <div style="padding:7px 14px; border:1px solid #D8CFBD; border-radius:3px; font-size:14.5px; color:#5A5245; background:#FDFBF7">4</div>
+      <div style="margin-left:auto; font-size:14.5px; color:#8A7F68">แถวสีแดงคือมีเรื่องต้องจัดการก่อนถึงวันอบรม</div>
+    </div>
+
+  </div>
+</div>
+</x-dc>
+</body>
+</html>
