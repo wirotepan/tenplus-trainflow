@@ -1,0 +1,120 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anuphan:wght@400;500;600;700&family=Sarabun:wght@400;700&display=swap">
+  <style>
+    body { margin:0; font-family:"Anuphan",system-ui,sans-serif; background:#FCFCFB; color:#1A1D1B;
+           font-size:16px; line-height:1.7; -webkit-font-smoothing:antialiased; }
+    a { color:#2F6B47; } a:hover { color:#1F4C31; }
+    .n { font-variant-numeric:tabular-nums; }
+  </style>
+</helmet>
+
+<div style="padding:38px 44px; display:flex; flex-direction:column; gap:26px; background:#FCFCFB; min-height:600px">
+
+  <div style="display:flex; flex-direction:column; gap:4px">
+    <div style="font-size:13px; letter-spacing:.12em; color:#8A918D">ผลการตรวจงานเดิม</div>
+    <div style="font-size:25px; font-weight:600; letter-spacing:-.015em; line-height:1.35">ทำไมแบบเดิมถึงไม่สบายตา</div>
+    <div style="font-size:15.5px; color:#6E7671; max-width:62ch">ไม่ใช่เรื่องสี — เป็นเรื่องขนาดตัวอักษรและระยะห่างบรรทัด
+      อักษรไทยมีวรรณยุกต์อยู่บนและล่างบรรทัด จึงต้องการระยะห่างมากกว่าอักษรละติน 10–15%</div>
+  </div>
+
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:22px">
+
+    <div style="display:flex; flex-direction:column; gap:10px">
+      <div style="display:flex; align-items:center; gap:9px">
+        <span style="width:9px; height:9px; border-radius:9px; background:#C0392B"></span>
+        <span style="font-size:15px; font-weight:600">แบบเดิม — Sarabun 11px ระยะบรรทัด 1.5</span>
+      </div>
+      <div style="border:1px solid #E3E5E1; border-radius:12px; padding:13px; background:#F0F4F5; font-family:'Sarabun',sans-serif">
+        <div style="display:flex; align-items:center; justify-content:space-between; padding-bottom:9px; border-bottom:1px solid #E1E6E8">
+          <span style="font-size:13.5px; font-weight:800">งานที่ต้องตามงาน</span>
+          <span style="font-size:11px; font-weight:700; background:#FEE2E2; color:#991B1B; border-radius:99px; padding:2px 9px">5 รายการ</span>
+        </div>
+        <div style="display:flex; gap:9px; align-items:flex-start; padding:7px 0; line-height:1.5">
+          <span style="font-size:11px; font-weight:700; background:#FEE2E2; color:#991B1B; border-radius:99px; padding:2px 9px; white-space:nowrap">2</span>
+          <span><span style="font-size:12.5px; font-weight:700">ยังไม่ได้จองวิทยากร</span><br><span style="font-size:11px; color:#8A979C">TR-2026-00123 · อบรมอีก 2 วัน</span></span>
+        </div>
+        <div style="display:flex; gap:9px; align-items:flex-start; padding:7px 0; line-height:1.5">
+          <span style="font-size:11px; font-weight:700; background:#FEF3C7; color:#92400E; border-radius:99px; padding:2px 9px; white-space:nowrap">3</span>
+          <span><span style="font-size:12.5px; font-weight:700">รายชื่อผู้เข้าอบรมไม่ครบ</span><br><span style="font-size:11px; color:#8A979C">ได้ 18 จาก 40 คน</span></span>
+        </div>
+        <div style="display:flex; gap:9px; align-items:flex-start; padding:7px 0; line-height:1.5">
+          <span style="font-size:11px; font-weight:700; background:#DBEAFE; color:#1E40AF; border-radius:99px; padding:2px 9px; white-space:nowrap">4</span>
+          <span><span style="font-size:12.5px; font-weight:700">จบแล้วยังไม่ออกรายงาน</span><br><span style="font-size:11px; color:#8A979C">ค้างเกิน 3 วัน</span></span>
+        </div>
+        <div style="display:flex; gap:9px; align-items:flex-start; padding:7px 0; line-height:1.5">
+          <span style="font-size:11px; font-weight:700; background:#EEF1F3; color:#475569; border-radius:99px; padding:2px 9px; white-space:nowrap">1</span>
+          <span><span style="font-size:12.5px; font-weight:700">กำไรต่ำกว่าเกณฑ์</span><br><span style="font-size:11px; color:#8A979C">margin 11.8%</span></span>
+        </div>
+      </div>
+      <div style="font-size:14px; color:#8A918D; line-height:1.6">ป้ายสี 4 สีในกล่องเดียว · ตัวอักษร 11–12.5px · วรรณยุกต์เกือบชนบรรทัดบน</div>
+    </div>
+
+    <div style="display:flex; flex-direction:column; gap:10px">
+      <div style="display:flex; align-items:center; gap:9px">
+        <span style="width:9px; height:9px; border-radius:9px; background:#2F6B47"></span>
+        <span style="font-size:15px; font-weight:600">แบบใหม่ — Anuphan 16px ระยะบรรทัด 1.7</span>
+      </div>
+      <div style="padding:13px 4px; display:flex; flex-direction:column">
+        <div style="display:flex; align-items:baseline; justify-content:space-between; padding-bottom:11px; border-bottom:1px solid #E3E5E1">
+          <span style="font-size:17px; font-weight:600">ต้องตัดสินใจวันนี้</span>
+          <span style="font-size:14px; color:#8A918D">3 รายการ</span>
+        </div>
+        <div style="display:flex; gap:14px; align-items:center; padding:13px 0; border-bottom:1px solid #EDEDE9">
+          <span style="width:8px; height:8px; border-radius:9px; background:#C0392B; flex:0 0 auto"></span>
+          <span style="display:flex; flex-direction:column; gap:1px">
+            <span style="font-size:16px; font-weight:600">ยังไม่ได้จองวิทยากร</span>
+            <span style="font-size:14.5px; color:#7C837E; line-height:1.55">TR-2026-00123 · อบรมอีก 2 วัน</span></span>
+        </div>
+        <div style="display:flex; gap:14px; align-items:center; padding:13px 0; border-bottom:1px solid #EDEDE9">
+          <span style="width:8px; height:8px; border-radius:9px; background:#B87A15; flex:0 0 auto"></span>
+          <span style="display:flex; flex-direction:column; gap:1px">
+            <span style="font-size:16px; font-weight:600">รายชื่อผู้เข้าอบรมไม่ครบ</span>
+            <span style="font-size:14.5px; color:#7C837E; line-height:1.55">ได้ 18 จาก 40 คน</span></span>
+        </div>
+        <div style="display:flex; gap:14px; align-items:center; padding:13px 0">
+          <span style="width:8px; height:8px; border-radius:9px; background:#B87A15; flex:0 0 auto"></span>
+          <span style="display:flex; flex-direction:column; gap:1px">
+            <span style="font-size:16px; font-weight:600">จบแล้วยังไม่ออกรายงาน</span>
+            <span style="font-size:14.5px; color:#7C837E; line-height:1.55">ค้างมา 3 วัน</span></span>
+        </div>
+      </div>
+      <div style="font-size:14px; color:#8A918D; line-height:1.6">จุดสีแทนป้ายสี · ตัวอักษร 16px · เส้นบางแบ่งแทนกล่อง</div>
+    </div>
+
+  </div>
+
+  <div style="display:grid; grid-template-columns:repeat(4, minmax(0,1fr)); gap:0; border-top:1px solid #E3E5E1; padding-top:20px">
+    <div style="display:flex; flex-direction:column; gap:2px; padding-right:24px">
+      <div style="font-size:14px; color:#868D88">ข้อความที่เล็กกว่า 13px</div>
+      <div class="n" style="font-size:28px; font-weight:600; line-height:1.25; color:#C0392B">79%</div>
+      <div style="font-size:13.5px; color:#8A918D; line-height:1.55">169 จาก 213 จุด</div>
+    </div>
+    <div style="display:flex; flex-direction:column; gap:2px; padding:0 24px; border-left:1px solid #EDEDE9">
+      <div style="font-size:14px; color:#868D88">ขนาดเล็กที่สุดที่ใช้</div>
+      <div class="n" style="font-size:28px; font-weight:600; line-height:1.25; color:#C0392B">10px</div>
+      <div style="font-size:13.5px; color:#8A918D; line-height:1.55">ใช้ 13 จุดทั่วระบบ</div>
+    </div>
+    <div style="display:flex; flex-direction:column; gap:2px; padding:0 24px; border-left:1px solid #EDEDE9">
+      <div style="font-size:14px; color:#868D88">ระยะบรรทัดที่ใช้</div>
+      <div class="n" style="font-size:28px; font-weight:600; line-height:1.25; color:#C0392B">1.5</div>
+      <div style="font-size:13.5px; color:#8A918D; line-height:1.55">ภาษาไทยควร 1.7 ขึ้นไป</div>
+    </div>
+    <div style="display:flex; flex-direction:column; gap:2px; padding-left:24px; border-left:1px solid #EDEDE9">
+      <div style="font-size:14px; color:#868D88">กล่องมีขอบในหน้าเดียว</div>
+      <div class="n" style="font-size:28px; font-weight:600; line-height:1.25; color:#C0392B">12</div>
+      <div style="font-size:13.5px; color:#8A918D; line-height:1.55">ทุกใบดูสำคัญเท่ากัน</div>
+    </div>
+  </div>
+
+</div>
+</x-dc>
+</body>
+</html>

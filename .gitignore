@@ -36,3 +36,6 @@ docs/ประชุม/
 # ไฟล์แนบที่อัปโหลดตอน dev (รูปงาน/บิล) — ไม่เอาขึ้น git
 .uploads/
 .uploads-test/
+
+# ไฟล์ canvas ที่ seed แล้ว (ใหญ่ ~2MB สร้างใหม่ได้จาก .dc.html เสมอ)
+docs/design/*-directions.html
