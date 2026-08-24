@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//home/user1/.claude/**)",
+      "Read(//home/user1/**)",
+      "Bash(curl -s --max-time 10 https://downloads.claude.ai/claude-code-releases/latest)",
+      "Skill(deep-research)",
+      "Workflow(deep-research)",
+      "WebSearch"
+    ]
+  }
+}
