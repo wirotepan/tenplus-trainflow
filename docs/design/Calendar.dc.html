@@ -1,0 +1,97 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@400;500;600&family=Trirong:wght@500;600&display=swap">
+  <style>
+    body { margin:0; font-family:"IBM Plex Sans Thai",system-ui,sans-serif;
+           background:#F7F3EC; color:#242019; font-size:16px; line-height:1.7;
+           -webkit-font-smoothing:antialiased; }
+    a { color:#2C5240; } a:hover { color:#1B3628; }
+    .n { font-variant-numeric:tabular-nums; }
+    .disp { font-family:"Trirong","IBM Plex Sans Thai",serif; }
+    .side { display:flex; flex-direction:column; gap:2px; padding:28px 16px; background:#2C5240; color:#E9E3D6; }
+    .snav { display:flex; align-items:center; gap:11px; padding:9px 12px; font-size:15px; color:#C3D2C8; }
+    .snav-on { display:flex; align-items:center; gap:11px; padding:9px 12px; border-radius:3px; background:#F7F3EC; color:#2C5240; font-size:15px; font-weight:600; }
+    .card { background:#FDFBF7; border:1px solid #E9E1D1; }
+    .btn { padding:9px 16px; border:1px solid #D8CFBD; border-radius:3px; font-size:15px; color:#5A5245; background:#FDFBF7; }
+    .btn-p { padding:9px 18px; border-radius:3px; background:#2C5240; color:#F7F3EC; font-size:15px; font-weight:600; }
+    .lbl { font-size:14px; color:#8A7F68; line-height:1.5; }
+    .rule { padding-bottom:18px; border-bottom:2px solid #B08829; }
+    .th { font-size:13.5px; color:#8A7F68; letter-spacing:.02em; }
+    .td { font-size:15.5px; }
+    .sub { color:#6E6555; }
+  </style>
+</helmet>
+
+<div style="display:grid; grid-template-columns:212px 1fr; min-height:1080px; background:#F7F3EC">
+  <div class="side">
+    <div style="display:flex; flex-direction:column; gap:2px; padding:0 8px 24px">
+      <div class="disp" style="font-size:20px; font-weight:600; letter-spacing:.01em">TrainFlow</div>
+      <div style="font-size:13px; color:#9DB3A5; line-height:1.5; letter-spacing:.04em">SAFETY SKILL CENTER</div>
+    </div>
+    <div class="snav"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="flex:0 0 auto"><rect x="3" y="3" width="7" height="9" rx="1.2"/><rect x="14" y="3" width="7" height="5" rx="1.2"/><rect x="14" y="12" width="7" height="9" rx="1.2"/><rect x="3" y="16" width="7" height="5" rx="1.2"/></svg><span>ภาพรวม</span></div>
+    <div class="snav"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="flex:0 0 auto"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M9 13h6"/><path d="M9 17h4"/></svg><span>งานฝึกอบรม</span></div>
+    <div class="snav-on"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="flex:0 0 auto"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18"/><path d="M8 3v4"/><path d="M16 3v4"/></svg><span>ปฏิทินวิทยากร</span></div>
+    <div class="snav"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="flex:0 0 auto"><path d="M16 20v-1.5a3.5 3.5 0 0 0-3.5-3.5h-5A3.5 3.5 0 0 0 4 18.5V20"/><circle cx="10" cy="8" r="3.2"/><path d="M20 20v-1.4a3.5 3.5 0 0 0-2.6-3.4"/><path d="M15.4 5.2a3.2 3.2 0 0 1 0 5.6"/></svg><span>ผู้เข้าอบรม</span></div>
+    <div class="snav"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="flex:0 0 auto"><circle cx="12" cy="9" r="5.2"/><path d="M8.6 13.4 7 21l5-2.4L17 21l-1.6-7.6"/></svg><span>วุฒิบัตร</span></div>
+    <div class="snav"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="flex:0 0 auto"><rect x="2.5" y="6" width="19" height="12" rx="2"/><circle cx="12" cy="12" r="2.6"/><path d="M6 11.9h.02"/><path d="M18 11.9h.02"/></svg><span>การเงิน</span></div>
+    <div class="snav"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="flex:0 0 auto"><ellipse cx="12" cy="6" rx="7.5" ry="3"/><path d="M4.5 6v6c0 1.66 3.36 3 7.5 3s7.5-1.34 7.5-3V6"/><path d="M4.5 12v6c0 1.66 3.36 3 7.5 3s7.5-1.34 7.5-3v-6"/></svg><span>ข้อมูลหลัก</span></div>
+  </div>
+  <div style="padding:34px 46px 46px; display:flex; flex-direction:column; gap:28px">
+    <div class="rule" style="display:flex; align-items:flex-end; justify-content:space-between; gap:24px">
+      <div style="display:flex; flex-direction:column; gap:2px">
+        <div class="n" style="font-size:13px; letter-spacing:.14em; color:#8A7F68">มิถุนายน 2569</div>
+        <div class="disp" style="font-size:29px; font-weight:600; line-height:1.35">ปฏิทินวิทยากร</div>
+        <div style="font-size:15px; color:#6E6555">เห็นงาน In-house รอบสาธารณะ และวันที่วิทยากรไม่ว่าง ในปฏิทินเดียว</div>
+      </div>
+      <div style="display:flex; gap:10px; align-items:center"><div class="btn">เดือน</div><div class="btn">สัปดาห์</div><div class="btn">รายวิทยากร</div><div class="btn-p">เพิ่มงาน</div></div>
+    </div>
+
+    <div style="display:flex; gap:12px; align-items:center; flex-wrap:wrap">
+      <div class="btn">ทุกวิทยากร</div>
+      <div class="btn">ทุกหลักสูตร</div>
+      <div style="margin-left:auto; display:flex; gap:22px; flex-wrap:wrap"><span style="display:flex; gap:8px; align-items:center; font-size:14.5px; color:#6E6555"><span style="width:11px; height:11px; background:#E4EBE5; border-left:3px solid #2C5240"></span>ยืนยันแล้ว</span><span style="display:flex; gap:8px; align-items:center; font-size:14.5px; color:#6E6555"><span style="width:11px; height:11px; background:#F6EEDA; border-left:3px solid #B08829"></span>จองชั่วคราว</span><span style="display:flex; gap:8px; align-items:center; font-size:14.5px; color:#6E6555"><span style="width:11px; height:11px; background:#F6E7E4; border-left:3px solid #A8342A"></span>ยังไม่มีวิทยากร / วิทยากรลา</span><span style="display:flex; gap:8px; align-items:center; font-size:14.5px; color:#6E6555"><span style="width:11px; height:11px; background:#F2ECDF; border-left:3px solid #8A7F68"></span>รอบสาธารณะ</span></div>
+    </div>
+
+    <div class="card" style="display:flex; flex-direction:column">
+      <div style="display:grid; grid-template-columns:repeat(7, minmax(0,1fr))"><div style="padding:11px; text-align:center; font-size:13px; color:#8A7F68; font-weight:500; border-right:1px solid #EFE8DA; border-bottom:1px solid #E9E1D1">อาทิตย์</div><div style="padding:11px; text-align:center; font-size:13px; color:#8A7F68; font-weight:500; border-right:1px solid #EFE8DA; border-bottom:1px solid #E9E1D1">จันทร์</div><div style="padding:11px; text-align:center; font-size:13px; color:#8A7F68; font-weight:500; border-right:1px solid #EFE8DA; border-bottom:1px solid #E9E1D1">อังคาร</div><div style="padding:11px; text-align:center; font-size:13px; color:#8A7F68; font-weight:500; border-right:1px solid #EFE8DA; border-bottom:1px solid #E9E1D1">พุธ</div><div style="padding:11px; text-align:center; font-size:13px; color:#8A7F68; font-weight:500; border-right:1px solid #EFE8DA; border-bottom:1px solid #E9E1D1">พฤหัสบดี</div><div style="padding:11px; text-align:center; font-size:13px; color:#8A7F68; font-weight:500; border-right:1px solid #EFE8DA; border-bottom:1px solid #E9E1D1">ศุกร์</div><div style="padding:11px; text-align:center; font-size:13px; color:#8A7F68; font-weight:500; border-right:1px solid #EFE8DA; border-bottom:1px solid #E9E1D1">เสาร์</div></div>
+      <div style="display:grid; grid-template-columns:repeat(7, minmax(0,1fr))"><div style="border-right:1px solid #EFE8DA; border-bottom:1px solid #EFE8DA; padding:8px; min-height:104px"><div class="n" style="font-size:13.5px; color:#A2967F; font-weight:400">7</div></div><div style="border-right:1px solid #EFE8DA; border-bottom:1px solid #EFE8DA; padding:8px; min-height:104px"><div class="n" style="font-size:13.5px; color:#242019; font-weight:500">8</div></div><div style="border-right:1px solid #EFE8DA; border-bottom:1px solid #EFE8DA; padding:8px; min-height:104px"><div class="n" style="font-size:13.5px; color:#242019; font-weight:500">9</div></div><div style="border-right:1px solid #EFE8DA; border-bottom:1px solid #EFE8DA; padding:8px; min-height:104px"><div class="n" style="font-size:13.5px; color:#242019; font-weight:500">10</div><div style="margin-top:5px; padding:5px 7px; background:#F6EEDA; color:#8A6A1E; border-left:3px solid #B08829; font-size:13px; line-height:1.45"><div style="font-weight:600">Safety Leadership</div><div style="color:#6E6555">อ.สมชาย · จองชั่วคราว</div></div></div><div style="border-right:1px solid #EFE8DA; border-bottom:1px solid #EFE8DA; padding:8px; min-height:104px"><div class="n" style="font-size:13.5px; color:#242019; font-weight:500">11</div><div style="margin-top:5px; padding:5px 7px; background:#E4EBE5; color:#244636; border-left:3px solid #2C5240; font-size:13px; line-height:1.45"><div style="font-weight:600">Basic Safety</div><div style="color:#6E6555">อ.นภา · ยืนยันแล้ว</div></div></div><div style="border-right:1px solid #EFE8DA; border-bottom:1px solid #EFE8DA; padding:8px; min-height:104px"><div class="n" style="font-size:13.5px; color:#242019; font-weight:500">12</div></div><div style="border-right:1px solid #EFE8DA; border-bottom:1px solid #EFE8DA; padding:8px; min-height:104px"><div class="n" style="font-size:13.5px; color:#A2967F; font-weight:400">13</div></div><div style="border-right:1px solid #EFE8DA; border-bottom:1px solid #EFE8DA; padding:8px; min-height:104px"><div class="n" style="font-size:13.5px; color:#A2967F; font-weight:400">14</div></div><div style="border-right:1px solid #EFE8DA; border-bottom:1px solid #EFE8DA; padding:8px; min-height:104px"><div class="n" style="font-size:13.5px; color:#242019; font-weight:500">15</div><div style="margin-top:5px; padding:5px 7px; background:#E4EBE5; color:#244636; border-left:3px solid #2C5240; font-size:13px; line-height:1.45"><div style="font-weight:600">Safety Leadership</div><div style="color:#6E6555">อ.สมชาย · กำลังอบรม</div></div></div><div style="border-right:1px solid #EFE8DA; border-bottom:1px solid #EFE8DA; padding:8px; min-height:104px"><div class="n" style="font-size:13.5px; color:#242019; font-weight:500">16</div><div style="margin-top:5px; padding:5px 7px; background:#E4EBE5; color:#244636; border-left:3px solid #2C5240; font-size:13px; line-height:1.45"><div style="font-weight:600">40,000 Awareness</div><div style="color:#6E6555">อ.นภา · ยืนยันแล้ว</div></div><div style="margin-top:5px; padding:5px 7px; background:#F6E7E4; color:#8A2B22; border-left:3px solid #A8342A; font-size:13px; line-height:1.45"><div style="font-weight:600">อ.กมล ลาพักร้อน</div><div style="color:#6E6555">ไม่รับงาน</div></div></div><div style="border-right:1px solid #EFE8DA; border-bottom:1px solid #EFE8DA; padding:8px; min-height:104px"><div class="n" style="font-size:13.5px; color:#242019; font-weight:500">17</div><div style="margin-top:5px; padding:5px 7px; background:#F6E7E4; color:#8A2B22; border-left:3px solid #A8342A; font-size:13px; line-height:1.45"><div style="font-weight:600">Risk Assessment</div><div style="color:#6E6555">ยังไม่มีวิทยากร</div></div></div><div style="border-right:1px solid #EFE8DA; border-bottom:1px solid #EFE8DA; padding:8px; min-height:104px"><div class="n" style="font-size:13.5px; color:#242019; font-weight:500">18</div><div style="margin-top:5px; padding:5px 7px; background:#E4EBE5; color:#244636; border-left:3px solid #2C5240; font-size:13px; line-height:1.45"><div style="font-weight:600">Working at Height</div><div style="color:#6E6555">อ.วิภา · ยืนยันแล้ว</div></div></div><div style="border-right:1px solid #EFE8DA; border-bottom:1px solid #EFE8DA; padding:8px; min-height:104px"><div class="n" style="font-size:13.5px; color:#242019; font-weight:500">19</div></div><div style="border-right:1px solid #EFE8DA; border-bottom:1px solid #EFE8DA; padding:8px; min-height:104px"><div class="n" style="font-size:13.5px; color:#A2967F; font-weight:400">20</div><div style="margin-top:5px; padding:5px 7px; background:#F2ECDF; color:#6E6555; border-left:3px solid #8A7F68; font-size:13px; line-height:1.45"><div style="font-weight:600">Basic Safety</div><div style="color:#6E6555">รอบสาธารณะ · รับสมัคร</div></div></div><div style="border-right:1px solid #EFE8DA; border-bottom:1px solid #EFE8DA; padding:8px; min-height:104px"><div class="n" style="font-size:13.5px; color:#A2967F; font-weight:400">21</div></div><div style="border-right:1px solid #EFE8DA; border-bottom:1px solid #EFE8DA; padding:8px; min-height:104px"><div class="n" style="font-size:13.5px; color:#242019; font-weight:500">22</div><div style="margin-top:5px; padding:5px 7px; background:#E4EBE5; color:#244636; border-left:3px solid #2C5240; font-size:13px; line-height:1.45"><div style="font-weight:600">Chemical Safety</div><div style="color:#6E6555">อ.ธนา · ยืนยันแล้ว</div></div></div><div style="border-right:1px solid #EFE8DA; border-bottom:1px solid #EFE8DA; padding:8px; min-height:104px"><div class="n" style="font-size:13.5px; color:#242019; font-weight:500">23</div><div style="margin-top:5px; padding:5px 7px; background:#E4EBE5; color:#244636; border-left:3px solid #2C5240; font-size:13px; line-height:1.45"><div style="font-weight:600">5S for Workplace</div><div style="color:#6E6555">อ.กมล · ยืนยันแล้ว</div></div></div><div style="border-right:1px solid #EFE8DA; border-bottom:1px solid #EFE8DA; padding:8px; min-height:104px"><div class="n" style="font-size:13.5px; color:#242019; font-weight:500">24</div></div><div style="border-right:1px solid #EFE8DA; border-bottom:1px solid #EFE8DA; padding:8px; min-height:104px"><div class="n" style="font-size:13.5px; color:#242019; font-weight:500">25</div></div><div style="border-right:1px solid #EFE8DA; border-bottom:1px solid #EFE8DA; padding:8px; min-height:104px"><div class="n" style="font-size:13.5px; color:#242019; font-weight:500">26</div></div><div style="border-right:1px solid #EFE8DA; border-bottom:1px solid #EFE8DA; padding:8px; min-height:104px"><div class="n" style="font-size:13.5px; color:#A2967F; font-weight:400">27</div></div></div>
+    </div>
+
+    <div style="display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:24px; align-items:start">
+      <div style="display:flex; flex-direction:column; gap:14px">
+        <div class="disp" style="font-size:19px; font-weight:600">วิทยากรที่ว่างสัปดาห์นี้</div>
+        <div class="card" style="display:flex; flex-direction:column">
+          <div style="display:grid; grid-template-columns:1fr 120px 130px; gap:16px; padding:13px 22px; background:#F2ECDF" class="th">
+            <div>วิทยากร</div><div>ว่าง</div><div style="text-align:right">หลักสูตรที่สอนได้</div></div>
+          <div style="display:grid; grid-template-columns:1fr 120px 130px; gap:16px; padding:14px 22px; border-bottom:1px solid #EFE8DA" class="td">
+            <div style="font-weight:500">อ.วิภา สุขสวัสดิ์</div><div class="n sub">4 วัน</div><div class="n" style="text-align:right">6 หลักสูตร</div></div>
+          <div style="display:grid; grid-template-columns:1fr 120px 130px; gap:16px; padding:14px 22px; border-bottom:1px solid #EFE8DA" class="td">
+            <div style="font-weight:500">อ.ธนา ประเสริฐ</div><div class="n sub">3 วัน</div><div class="n" style="text-align:right">4 หลักสูตร</div></div>
+          <div style="display:grid; grid-template-columns:1fr 120px 130px; gap:16px; padding:14px 22px" class="td">
+            <div style="font-weight:500">อ.ณัฐพล ศรีสุข</div><div class="n sub">5 วัน</div><div class="n" style="text-align:right">3 หลักสูตร</div></div>
+        </div>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:14px">
+        <div class="disp" style="font-size:19px; font-weight:600">ต้องจัดการก่อนถึงวัน</div>
+        <div class="card" style="display:flex; flex-direction:column">
+          <div style="padding:16px 22px; border-bottom:1px solid #EFE8DA; border-left:3px solid #A8342A; display:flex; flex-direction:column; gap:2px">
+            <div style="font-size:15.5px; font-weight:600">17 มิ.ย. — Risk Assessment ยังไม่มีวิทยากร</div>
+            <div style="font-size:14.5px; color:#6E6555">เหลืออีก 2 วัน · มีคนที่สอนได้และว่าง 3 คน</div></div>
+          <div style="padding:16px 22px; border-left:3px solid #B08829; display:flex; flex-direction:column; gap:2px">
+            <div style="font-size:15.5px; font-weight:600">10 มิ.ย. — อ.สมชาย ยังไม่ตอบรับงาน</div>
+            <div style="font-size:14.5px; color:#6E6555">จองชั่วคราวไว้ ระบบจะปลดวันคืนอัตโนมัติในอีก 12 ชั่วโมง</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</x-dc>
+</body>
+</html>

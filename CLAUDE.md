@@ -24,6 +24,10 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
   `apps/web/src/theme.css` · ต้นแบบ 6 หน้า `docs/design/*.dc.html` (seed ใหม่ได้ด้วย skill `design`)
   · เหตุผลเบื้องหลัง `docs/spec/ux-research-2026.md` — สองรอบแรกถูกปฏิเสธเพราะตัวอักษร 79% เล็กกว่า 13px
   และ line-height 1.5 (อักษรไทยต้องการ 1.7)
+- ✅ **ต้นแบบครบ 16 หน้า** (2026-08-25) แบ่ง 4 กลุ่มบน canvas: เริ่มงาน · จัดงานและวิทยากร ·
+  ผลการอบรม · การเงินและระบบ. สร้างด้วย `docs/design/_scaffold.py` ซึ่งดึง helmet + แถบเมนู
+  จาก `Jobs.dc.html` (หน้าที่อนุมัติแล้ว) → **ทุกหน้าใช้ชุดเดียวกันเสมอ แก้ที่เดียว**
+  · แก้หน้าไหนให้แก้ที่ `docs/design/bodies/<ชื่อ>.py` แล้วรัน `python3 _scaffold.py`
 - ⬜ ยังไม่มี: scaffold monorepo, contract files (`openapi.yaml`, `prisma/schema.prisma`, shared-types)
 - ⏭️ **ถัดไป:** ผู้ใช้รีวิวเฟส 1–2 → **ตอบคำถาม 🔴 Q1–Q4** (`01-requirements.md` §7) → เริ่ม **M0**
   (git + monorepo + contract 3 ไฟล์ + CI + `npm run check`). **ห้ามเริ่ม migration แรกก่อนได้คำตอบ Q1–Q4**

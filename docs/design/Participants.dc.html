@@ -1,0 +1,92 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@400;500;600&family=Trirong:wght@500;600&display=swap">
+  <style>
+    body { margin:0; font-family:"IBM Plex Sans Thai",system-ui,sans-serif;
+           background:#F7F3EC; color:#242019; font-size:16px; line-height:1.7;
+           -webkit-font-smoothing:antialiased; }
+    a { color:#2C5240; } a:hover { color:#1B3628; }
+    .n { font-variant-numeric:tabular-nums; }
+    .disp { font-family:"Trirong","IBM Plex Sans Thai",serif; }
+    .side { display:flex; flex-direction:column; gap:2px; padding:28px 16px; background:#2C5240; color:#E9E3D6; }
+    .snav { display:flex; align-items:center; gap:11px; padding:9px 12px; font-size:15px; color:#C3D2C8; }
+    .snav-on { display:flex; align-items:center; gap:11px; padding:9px 12px; border-radius:3px; background:#F7F3EC; color:#2C5240; font-size:15px; font-weight:600; }
+    .card { background:#FDFBF7; border:1px solid #E9E1D1; }
+    .btn { padding:9px 16px; border:1px solid #D8CFBD; border-radius:3px; font-size:15px; color:#5A5245; background:#FDFBF7; }
+    .btn-p { padding:9px 18px; border-radius:3px; background:#2C5240; color:#F7F3EC; font-size:15px; font-weight:600; }
+    .lbl { font-size:14px; color:#8A7F68; line-height:1.5; }
+    .rule { padding-bottom:18px; border-bottom:2px solid #B08829; }
+    .th { font-size:13.5px; color:#8A7F68; letter-spacing:.02em; }
+    .td { font-size:15.5px; }
+    .sub { color:#6E6555; }
+  </style>
+</helmet>
+
+<div style="display:grid; grid-template-columns:212px 1fr; min-height:940px; background:#F7F3EC">
+  <div class="side">
+    <div style="display:flex; flex-direction:column; gap:2px; padding:0 8px 24px">
+      <div class="disp" style="font-size:20px; font-weight:600; letter-spacing:.01em">TrainFlow</div>
+      <div style="font-size:13px; color:#9DB3A5; line-height:1.5; letter-spacing:.04em">SAFETY SKILL CENTER</div>
+    </div>
+    <div class="snav"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="flex:0 0 auto"><rect x="3" y="3" width="7" height="9" rx="1.2"/><rect x="14" y="3" width="7" height="5" rx="1.2"/><rect x="14" y="12" width="7" height="9" rx="1.2"/><rect x="3" y="16" width="7" height="5" rx="1.2"/></svg><span>ภาพรวม</span></div>
+    <div class="snav"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="flex:0 0 auto"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M9 13h6"/><path d="M9 17h4"/></svg><span>งานฝึกอบรม</span></div>
+    <div class="snav"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="flex:0 0 auto"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18"/><path d="M8 3v4"/><path d="M16 3v4"/></svg><span>ปฏิทินวิทยากร</span></div>
+    <div class="snav-on"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="flex:0 0 auto"><path d="M16 20v-1.5a3.5 3.5 0 0 0-3.5-3.5h-5A3.5 3.5 0 0 0 4 18.5V20"/><circle cx="10" cy="8" r="3.2"/><path d="M20 20v-1.4a3.5 3.5 0 0 0-2.6-3.4"/><path d="M15.4 5.2a3.2 3.2 0 0 1 0 5.6"/></svg><span>ผู้เข้าอบรม</span></div>
+    <div class="snav"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="flex:0 0 auto"><circle cx="12" cy="9" r="5.2"/><path d="M8.6 13.4 7 21l5-2.4L17 21l-1.6-7.6"/></svg><span>วุฒิบัตร</span></div>
+    <div class="snav"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="flex:0 0 auto"><rect x="2.5" y="6" width="19" height="12" rx="2"/><circle cx="12" cy="12" r="2.6"/><path d="M6 11.9h.02"/><path d="M18 11.9h.02"/></svg><span>การเงิน</span></div>
+    <div class="snav"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="flex:0 0 auto"><ellipse cx="12" cy="6" rx="7.5" ry="3"/><path d="M4.5 6v6c0 1.66 3.36 3 7.5 3s7.5-1.34 7.5-3V6"/><path d="M4.5 12v6c0 1.66 3.36 3 7.5 3s7.5-1.34 7.5-3v-6"/></svg><span>ข้อมูลหลัก</span></div>
+  </div>
+  <div style="padding:34px 46px 46px; display:flex; flex-direction:column; gap:28px">
+    <div class="rule" style="display:flex; align-items:flex-end; justify-content:space-between; gap:24px">
+      <div style="display:flex; flex-direction:column; gap:2px">
+        <div class="n" style="font-size:13px; letter-spacing:.14em; color:#8A7F68">TR-2026-00125</div>
+        <div class="disp" style="font-size:29px; font-weight:600; line-height:1.35">ผู้เข้าอบรม</div>
+        <div style="font-size:15px; color:#6E6555">Safety Leadership · ABC Manufacturing · 15 มิถุนายน 2569</div>
+      </div>
+      <div style="display:flex; gap:10px; align-items:center"><div class="btn">นำเข้าจาก Excel</div><div class="btn">ส่งออกรายชื่อ</div><div class="btn-p">เพิ่มผู้เข้าอบรม</div></div>
+    </div>
+
+    <div class="card" style="display:grid; grid-template-columns:repeat(6, minmax(0,1fr)); gap:0">
+      <div style="padding:20px 22px; display:flex; flex-direction:column; gap:2px">
+        <span class="lbl">ลงทะเบียนไว้</span><span class="n disp" style="font-size:30px; font-weight:600; line-height:1.2">60</span></div>
+      <div style="padding:20px 22px; display:flex; flex-direction:column; gap:2px; border-left:1px solid #EFE8DA">
+        <span class="lbl">เข้าอบรมรอบเช้า</span><span class="n disp" style="font-size:30px; font-weight:600; line-height:1.2">58</span></div>
+      <div style="padding:20px 22px; display:flex; flex-direction:column; gap:2px; border-left:1px solid #EFE8DA">
+        <span class="lbl">เข้าอบรมรอบบ่าย</span><span class="n disp" style="font-size:30px; font-weight:600; line-height:1.2">56</span></div>
+      <div style="padding:20px 22px; display:flex; flex-direction:column; gap:2px; border-left:1px solid #EFE8DA">
+        <span class="lbl">คะแนนก่อนอบรมเฉลี่ย</span><span class="n disp" style="font-size:30px; font-weight:600; line-height:1.2">52%</span></div>
+      <div style="padding:20px 22px; display:flex; flex-direction:column; gap:2px; border-left:1px solid #EFE8DA">
+        <span class="lbl">คะแนนหลังอบรมเฉลี่ย</span><span class="n disp" style="font-size:30px; font-weight:600; line-height:1.2">81%</span></div>
+      <div style="padding:20px 22px; display:flex; flex-direction:column; gap:2px; border-left:1px solid #B08829">
+        <span class="lbl">ผ่านเกณฑ์</span><span class="n disp" style="font-size:30px; font-weight:600; line-height:1.2; color:#2C5240">52</span>
+        <span style="font-size:14px; color:#8A7F68">จาก 60 คน</span></div>
+    </div>
+
+    <div style="display:flex; gap:12px; align-items:center; flex-wrap:wrap">
+      <div style="flex:1 1 280px; max-width:320px; padding:10px 14px; background:#FDFBF7; border:1px solid #E9E1D1; font-size:15px; color:#9A9182">ค้นหาชื่อหรืออีเมล</div>
+      <div class="btn">ทุกผลการอบรม</div>
+      <div style="margin-left:auto; font-size:14.5px; color:#8A7F68">แสดง 1–6 จาก 60 คน</div>
+    </div>
+
+    <div class="card" style="display:flex; flex-direction:column">
+      <div style="display:grid; grid-template-columns:44px 1fr 108px 72px 72px 84px 84px 190px; gap:16px; padding:13px 22px; background:#F2ECDF" class="th">
+        <div>ที่</div><div>ชื่อ–นามสกุล</div><div>บริษัท</div><div>เช้า</div><div>บ่าย</div><div>ก่อน</div><div>หลัง</div><div>ผลการอบรม</div>
+      </div>
+      <div style="display:grid; grid-template-columns:44px 1fr 108px 72px 72px 84px 84px 190px; gap:16px; padding:15px 22px; border-bottom:1px solid #EFE8DA; align-items:center" class="td"><div class="n sub">1</div><div style="font-weight:500">นายสมชาย โดดี</div><div class="sub">ABC</div><div><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#2C5240" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></div><div><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#2C5240" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></div><div class="n">60%</div><div class="n">85%</div><div style="color:#2C5240; font-weight:500">ผ่าน · ออกวุฒิบัตรแล้ว</div></div><div style="display:grid; grid-template-columns:44px 1fr 108px 72px 72px 84px 84px 190px; gap:16px; padding:15px 22px; border-bottom:1px solid #EFE8DA; align-items:center" class="td"><div class="n sub">2</div><div style="font-weight:500">นางสาววิไล ใจดี</div><div class="sub">ABC</div><div><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#2C5240" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></div><div><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#2C5240" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></div><div class="n">60%</div><div class="n">70%</div><div style="color:#2C5240; font-weight:500">ผ่าน · ออกวุฒิบัตรแล้ว</div></div><div style="display:grid; grid-template-columns:44px 1fr 108px 72px 72px 84px 84px 190px; gap:16px; padding:15px 22px; border-bottom:1px solid #EFE8DA; align-items:center" class="td"><div class="n sub">3</div><div style="font-weight:500">นายธเนตร ทองแท้</div><div class="sub">ABC</div><div><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#2C5240" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></div><div><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#A8342A" stroke-width="2.2" stroke-linecap="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></div><div class="n">50%</div><div class="n">—</div><div style="color:#A8342A; font-weight:500">ไม่ผ่าน · ชั่วโมงไม่ครบเกณฑ์</div></div><div style="display:grid; grid-template-columns:44px 1fr 108px 72px 72px 84px 84px 190px; gap:16px; padding:15px 22px; border-bottom:1px solid #EFE8DA; align-items:center" class="td"><div class="n sub">4</div><div style="font-weight:500">นางสาวสุภัทร ศรีสุข</div><div class="sub">ABC</div><div><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#2C5240" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></div><div><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#2C5240" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></div><div class="n">75%</div><div class="n">80%</div><div style="color:#2C5240; font-weight:500">ผ่าน · ออกวุฒิบัตรแล้ว</div></div><div style="display:grid; grid-template-columns:44px 1fr 108px 72px 72px 84px 84px 190px; gap:16px; padding:15px 22px; border-bottom:1px solid #EFE8DA; align-items:center" class="td"><div class="n sub">5</div><div style="font-weight:500">นายวัฒนา นาคดี</div><div class="sub">ABC</div><div><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#2C5240" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></div><div><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#2C5240" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></div><div class="n">65%</div><div class="n">55%</div><div style="color:#8A6A1E; font-weight:500">รอสอบซ่อม ครั้งที่ 1 จาก 2</div></div><div style="display:grid; grid-template-columns:44px 1fr 108px 72px 72px 84px 84px 190px; gap:16px; padding:15px 22px;  align-items:center" class="td"><div class="n sub">6</div><div style="font-weight:500">นางกมล ทิพย์วารี</div><div class="sub">ABC</div><div><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#A8342A" stroke-width="2.2" stroke-linecap="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></div><div><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#A8342A" stroke-width="2.2" stroke-linecap="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></div><div class="n">—</div><div class="n">—</div><div style="color:#A8342A; font-weight:500">ไม่มาอบรม</div></div>
+    </div>
+
+    <div style="font-size:14.5px; color:#8A7F68; line-height:1.65">
+      ช่องเช้าและบ่ายมาจากการสแกนเช็คชื่อจริง ระบบคิดชั่วโมงเข้าอบรมให้เอง
+      แล้วใช้ร่วมกับคะแนนหลังอบรมตัดสินว่าผ่านหรือไม่ · แก้ไขย้อนหลังได้แต่ต้องระบุเหตุผลและระบบจะบันทึกว่าใครแก้</div>
+  </div>
+</div>
+</x-dc>
+</body>
+</html>

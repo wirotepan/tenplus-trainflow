@@ -1,0 +1,141 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@400;500;600&family=Trirong:wght@500;600&display=swap">
+  <style>
+    body { margin:0; font-family:"IBM Plex Sans Thai",system-ui,sans-serif;
+           background:#F7F3EC; color:#242019; font-size:16px; line-height:1.7;
+           -webkit-font-smoothing:antialiased; }
+    a { color:#2C5240; } a:hover { color:#1B3628; }
+    .n { font-variant-numeric:tabular-nums; }
+    .disp { font-family:"Trirong","IBM Plex Sans Thai",serif; }
+    .side { display:flex; flex-direction:column; gap:2px; padding:28px 16px; background:#2C5240; color:#E9E3D6; }
+    .snav { display:flex; align-items:center; gap:11px; padding:9px 12px; font-size:15px; color:#C3D2C8; }
+    .snav-on { display:flex; align-items:center; gap:11px; padding:9px 12px; border-radius:3px; background:#F7F3EC; color:#2C5240; font-size:15px; font-weight:600; }
+    .card { background:#FDFBF7; border:1px solid #E9E1D1; }
+    .btn { padding:9px 16px; border:1px solid #D8CFBD; border-radius:3px; font-size:15px; color:#5A5245; background:#FDFBF7; }
+    .btn-p { padding:9px 18px; border-radius:3px; background:#2C5240; color:#F7F3EC; font-size:15px; font-weight:600; }
+    .lbl { font-size:14px; color:#8A7F68; line-height:1.5; }
+    .rule { padding-bottom:18px; border-bottom:2px solid #B08829; }
+    .th { font-size:13.5px; color:#8A7F68; letter-spacing:.02em; }
+    .td { font-size:15.5px; }
+    .sub { color:#6E6555; }
+  </style>
+</helmet>
+
+<div style="display:grid; grid-template-columns:212px 1fr; min-height:1120px; background:#F7F3EC">
+  <div class="side">
+    <div style="display:flex; flex-direction:column; gap:2px; padding:0 8px 24px">
+      <div class="disp" style="font-size:20px; font-weight:600; letter-spacing:.01em">TrainFlow</div>
+      <div style="font-size:13px; color:#9DB3A5; line-height:1.5; letter-spacing:.04em">SAFETY SKILL CENTER</div>
+    </div>
+    <div class="snav"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="flex:0 0 auto"><rect x="3" y="3" width="7" height="9" rx="1.2"/><rect x="14" y="3" width="7" height="5" rx="1.2"/><rect x="14" y="12" width="7" height="9" rx="1.2"/><rect x="3" y="16" width="7" height="5" rx="1.2"/></svg><span>ภาพรวม</span></div>
+    <div class="snav"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="flex:0 0 auto"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M9 13h6"/><path d="M9 17h4"/></svg><span>งานฝึกอบรม</span></div>
+    <div class="snav"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="flex:0 0 auto"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18"/><path d="M8 3v4"/><path d="M16 3v4"/></svg><span>ปฏิทินวิทยากร</span></div>
+    <div class="snav"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="flex:0 0 auto"><path d="M16 20v-1.5a3.5 3.5 0 0 0-3.5-3.5h-5A3.5 3.5 0 0 0 4 18.5V20"/><circle cx="10" cy="8" r="3.2"/><path d="M20 20v-1.4a3.5 3.5 0 0 0-2.6-3.4"/><path d="M15.4 5.2a3.2 3.2 0 0 1 0 5.6"/></svg><span>ผู้เข้าอบรม</span></div>
+    <div class="snav"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="flex:0 0 auto"><circle cx="12" cy="9" r="5.2"/><path d="M8.6 13.4 7 21l5-2.4L17 21l-1.6-7.6"/></svg><span>วุฒิบัตร</span></div>
+    <div class="snav-on"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="flex:0 0 auto"><rect x="2.5" y="6" width="19" height="12" rx="2"/><circle cx="12" cy="12" r="2.6"/><path d="M6 11.9h.02"/><path d="M18 11.9h.02"/></svg><span>การเงิน</span></div>
+    <div class="snav"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="flex:0 0 auto"><ellipse cx="12" cy="6" rx="7.5" ry="3"/><path d="M4.5 6v6c0 1.66 3.36 3 7.5 3s7.5-1.34 7.5-3V6"/><path d="M4.5 12v6c0 1.66 3.36 3 7.5 3s7.5-1.34 7.5-3v-6"/></svg><span>ข้อมูลหลัก</span></div>
+  </div>
+  <div style="padding:34px 46px 46px; display:flex; flex-direction:column; gap:28px">
+    <div class="rule" style="display:flex; align-items:flex-end; justify-content:space-between; gap:24px">
+      <div style="display:flex; flex-direction:column; gap:2px">
+        <div class="n" style="font-size:13px; letter-spacing:.14em; color:#8A7F68">TR-2026-00125</div>
+        <div class="disp" style="font-size:29px; font-weight:600; line-height:1.35">การเงินและกำไรของงาน</div>
+        <div style="font-size:15px; color:#6E6555">Safety Leadership · ABC Manufacturing · เห็นได้เฉพาะฝ่ายการเงิน ผู้บริหาร และผู้ดูแลระบบ</div>
+      </div>
+      <div style="display:flex; gap:10px; align-items:center"><div class="btn">เพิ่มค่าใช้จ่าย</div><div class="btn-p">ปิดงาน</div></div>
+    </div>
+
+    <div style="display:grid; grid-template-columns:repeat(4, minmax(0,1fr)); gap:24px">
+      <div class="card" style="padding:22px 24px; display:flex; flex-direction:column; gap:3px">
+        <span class="lbl">รายได้สุทธิ</span>
+        <span class="n disp" style="font-size:32px; font-weight:600; line-height:1.2">42,000</span>
+        <span style="font-size:14.5px; color:#8A7F68">ราคาขาย 45,000 หักส่วนลด 3,000</span></div>
+      <div class="card" style="padding:22px 24px; display:flex; flex-direction:column; gap:3px">
+        <span class="lbl">ต้นทุนที่ใช้จริง</span>
+        <span class="n disp" style="font-size:32px; font-weight:600; line-height:1.2">25,000</span>
+        <span style="font-size:14.5px; color:#2C5240">ต่ำกว่างบที่ตั้งไว้ 1,500 บาท</span></div>
+      <div class="card" style="padding:22px 24px; display:flex; flex-direction:column; gap:3px; border-color:#B08829">
+        <span class="lbl">กำไรขั้นต้น</span>
+        <span class="n disp" style="font-size:32px; font-weight:600; line-height:1.2; color:#2C5240">17,000</span>
+        <span style="font-size:14.5px; color:#8A7F68">อัตรากำไร 40.5%</span></div>
+      <div class="card" style="padding:22px 24px; display:flex; flex-direction:column; gap:3px">
+        <span class="lbl">ต้นทุนต่อผู้เข้าอบรม</span>
+        <span class="n disp" style="font-size:32px; font-weight:600; line-height:1.2">417</span>
+        <span style="font-size:14.5px; color:#8A7F68">คิดจากผู้เข้าอบรมจริง 60 คน</span></div>
+    </div>
+
+    <div style="display:flex; flex-direction:column; gap:14px">
+      <div style="display:flex; align-items:baseline; justify-content:space-between">
+        <div class="disp" style="font-size:19px; font-weight:600">งบที่ตั้งไว้ เทียบกับที่ใช้จริง</div>
+        <span style="font-size:14.5px; color:#8A7F68">หมวดค่าใช้จ่ายเพิ่มหรือแก้ชื่อได้เองที่ข้อมูลหลัก</span>
+      </div>
+      <div class="card" style="display:flex; flex-direction:column">
+        <div style="display:grid; grid-template-columns:1fr 120px 120px 110px 120px; gap:16px; padding:13px 22px; background:#F2ECDF" class="th">
+          <div>หมวดค่าใช้จ่าย</div><div style="text-align:right">ตั้งงบไว้</div><div style="text-align:right">ใช้จริง</div>
+          <div style="text-align:right">ส่วนต่าง</div><div style="text-align:right">สถานะ</div></div>
+        <div style="display:grid; grid-template-columns:1fr 120px 120px 110px 120px; gap:16px; padding:14px 22px; border-bottom:1px solid #EFE8DA; align-items:center" class="td"><div>ค่าวิทยากร</div><div class="n sub" style="text-align:right">12,000</div><div class="n" style="text-align:right; font-weight:500">12,000</div><div class="n" style="text-align:right; color:#6E6555">0</div><div style="text-align:right; color:#6E6555; font-size:14.5px">ตรงงบ</div></div><div style="display:grid; grid-template-columns:1fr 120px 120px 110px 120px; gap:16px; padding:14px 22px; border-bottom:1px solid #EFE8DA; align-items:center" class="td"><div>ค่าเดินทางวิทยากร</div><div class="n sub" style="text-align:right">1,500</div><div class="n" style="text-align:right; font-weight:500">2,000</div><div class="n" style="text-align:right; color:#A8342A">+500</div><div style="text-align:right; color:#A8342A; font-size:14.5px">เกินงบ</div></div><div style="display:grid; grid-template-columns:1fr 120px 120px 110px 120px; gap:16px; padding:14px 22px; border-bottom:1px solid #EFE8DA; align-items:center" class="td"><div>ค่าที่พัก</div><div class="n sub" style="text-align:right">2,000</div><div class="n" style="text-align:right; font-weight:500">1,500</div><div class="n" style="text-align:right; color:#2C5240">-500</div><div style="text-align:right; color:#2C5240; font-size:14.5px">ต่ำกว่างบ</div></div><div style="display:grid; grid-template-columns:1fr 120px 120px 110px 120px; gap:16px; padding:14px 22px; border-bottom:1px solid #EFE8DA; align-items:center" class="td"><div>ค่าอาหารและเบรก</div><div class="n sub" style="text-align:right">6,000</div><div class="n" style="text-align:right; font-weight:500">4,800</div><div class="n" style="text-align:right; color:#2C5240">-1,200</div><div style="text-align:right; color:#2C5240; font-size:14.5px">ต่ำกว่างบ</div></div><div style="display:grid; grid-template-columns:1fr 120px 120px 110px 120px; gap:16px; padding:14px 22px; border-bottom:1px solid #EFE8DA; align-items:center" class="td"><div>ค่าเอกสารประกอบการอบรม</div><div class="n sub" style="text-align:right">1,200</div><div class="n" style="text-align:right; font-weight:500">1,200</div><div class="n" style="text-align:right; color:#6E6555">0</div><div style="text-align:right; color:#6E6555; font-size:14.5px">ตรงงบ</div></div><div style="display:grid; grid-template-columns:1fr 120px 120px 110px 120px; gap:16px; padding:14px 22px; border-bottom:1px solid #EFE8DA; align-items:center" class="td"><div>ค่าอุปกรณ์</div><div class="n sub" style="text-align:right">1,000</div><div class="n" style="text-align:right; font-weight:500">1,000</div><div class="n" style="text-align:right; color:#6E6555">0</div><div style="text-align:right; color:#6E6555; font-size:14.5px">ตรงงบ</div></div><div style="display:grid; grid-template-columns:1fr 120px 120px 110px 120px; gap:16px; padding:14px 22px; border-bottom:1px solid #EFE8DA; align-items:center" class="td"><div>ค่าสถานที่</div><div class="n sub" style="text-align:right">2,000</div><div class="n" style="text-align:right; font-weight:500">2,000</div><div class="n" style="text-align:right; color:#6E6555">0</div><div style="text-align:right; color:#6E6555; font-size:14.5px">ตรงงบ</div></div><div style="display:grid; grid-template-columns:1fr 120px 120px 110px 120px; gap:16px; padding:14px 22px;  align-items:center" class="td"><div>ค่าใช้จ่ายอื่น</div><div class="n sub" style="text-align:right">800</div><div class="n" style="text-align:right; font-weight:500">500</div><div class="n" style="text-align:right; color:#2C5240">-300</div><div style="text-align:right; color:#2C5240; font-size:14.5px">ต่ำกว่างบ</div></div>
+        <div style="display:grid; grid-template-columns:1fr 120px 120px 110px 120px; gap:16px; padding:16px 22px; background:#F2ECDF; align-items:center">
+          <div style="font-weight:600; font-size:16px">รวมทั้งสิ้น</div>
+          <div class="n sub" style="text-align:right; font-size:16px">26,500</div>
+          <div class="n" style="text-align:right; font-weight:600; font-size:16px">25,000</div>
+          <div class="n" style="text-align:right; color:#2C5240; font-weight:600; font-size:16px">-1,500</div>
+          <div style="text-align:right; color:#2C5240; font-size:14.5px; font-weight:500">ต่ำกว่างบ</div></div>
+      </div>
+      <div style="font-size:14.5px; color:#8A7F68; line-height:1.65">
+        ค่าเดินทางเกินงบ 500 บาท เพราะเปลี่ยนวิทยากรกลางทางและต้องเดินทางจากต่างจังหวัด
+        ระบบเตือนตั้งแต่วันที่บันทึกค่าใช้จ่าย ไม่ต้องรอปิดงบสิ้นเดือน</div>
+    </div>
+
+    <div style="display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:24px; align-items:start">
+      <div style="display:flex; flex-direction:column; gap:14px">
+        <div class="disp" style="font-size:19px; font-weight:600">สัดส่วนต้นทุน</div>
+        <div class="card" style="padding:22px 24px; display:flex; flex-direction:column; gap:14px">
+          <div style="display:flex; height:14px; overflow:hidden">
+            <div style="width:48%; background:#2C5240"></div><div style="width:19.2%; background:#4E7A63"></div>
+            <div style="width:8%; background:#7FA48F"></div><div style="width:8%; background:#B08829"></div>
+            <div style="width:6%; background:#C9A557"></div><div style="width:10.8%; background:#D8CFBD"></div>
+          </div>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:9px 20px; font-size:15px">
+            <span style="display:flex; gap:9px; align-items:center"><span style="width:11px; height:11px; background:#2C5240"></span>ค่าวิทยากร <span class="n sub" style="margin-left:auto">48%</span></span>
+            <span style="display:flex; gap:9px; align-items:center"><span style="width:11px; height:11px; background:#4E7A63"></span>อาหารและเบรก <span class="n sub" style="margin-left:auto">19%</span></span>
+            <span style="display:flex; gap:9px; align-items:center"><span style="width:11px; height:11px; background:#7FA48F"></span>เดินทาง <span class="n sub" style="margin-left:auto">8%</span></span>
+            <span style="display:flex; gap:9px; align-items:center"><span style="width:11px; height:11px; background:#B08829"></span>สถานที่ <span class="n sub" style="margin-left:auto">8%</span></span>
+            <span style="display:flex; gap:9px; align-items:center"><span style="width:11px; height:11px; background:#C9A557"></span>ที่พัก <span class="n sub" style="margin-left:auto">6%</span></span>
+            <span style="display:flex; gap:9px; align-items:center"><span style="width:11px; height:11px; background:#D8CFBD"></span>อื่น ๆ <span class="n sub" style="margin-left:auto">11%</span></span>
+          </div>
+        </div>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:14px">
+        <div class="disp" style="font-size:19px; font-weight:600">ก่อนปิดงาน</div>
+        <div class="card" style="display:flex; flex-direction:column">
+          <div style="padding:15px 22px; border-bottom:1px solid #EFE8DA; display:flex; gap:12px; align-items:center; font-size:15.5px">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#2C5240" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            บันทึกค่าใช้จ่ายครบทุกหมวดแล้ว</div>
+          <div style="padding:15px 22px; border-bottom:1px solid #EFE8DA; display:flex; gap:12px; align-items:center; font-size:15.5px">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#2C5240" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            ออกวุฒิบัตรครบ 52 ใบ</div>
+          <div style="padding:15px 22px; border-bottom:1px solid #EFE8DA; display:flex; gap:12px; align-items:center; font-size:15.5px; color:#8A6A1E">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#B08829" stroke-width="2.2"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2" stroke-linecap="round"></path></svg>
+            ยังไม่ได้ส่งรูปเล่มรายงานให้ลูกค้า</div>
+          <div style="padding:15px 22px; display:flex; gap:12px; align-items:center; font-size:15.5px; color:#8A6A1E">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#B08829" stroke-width="2.2"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2" stroke-linecap="round"></path></svg>
+            ยังไม่ได้แนบสำเนาใบเสร็จค่าสถานที่</div>
+        </div>
+        <div style="font-size:14.5px; color:#8A7F68; line-height:1.65">
+          เมื่อปิดงานแล้วระบบจะล็อกไม่ให้แก้คะแนน การเช็คชื่อ และตัวเลขการเงินย้อนหลัง
+          หากจำเป็นต้องแก้ ต้องใช้สิทธิ์ผู้ดูแลระบบและระบุเหตุผล</div>
+      </div>
+    </div>
+  </div>
+</div>
+</x-dc>
+</body>
+</html>
