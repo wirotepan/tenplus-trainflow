@@ -7,7 +7,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## 📍 มาถึงไหนแล้ว / ทำต่อตรงไหน (resume here)
 
-อัปเดตล่าสุด: **2026-08-24 (เฟส 1–2 ร่างเสร็จ รอรีวิว — ยังไม่มีโค้ด)**
+อัปเดตล่าสุด: **2026-08-25 (เอกสาร + UI เสร็จ รอลูกค้ายืนยันและตอบคำถาม 🔴 — ยังไม่มีโค้ด)**
 
 - ✅ ตั้งชื่อระบบ **TrainFlow** + สรุป concept/จุดขาย/โมดูลหลัก (ดู "What is being built")
 - ✅ ได้ **ผังงาน end-to-end 16 ขั้น** จากลูกค้า (แชท 24 ส.ค.) — ถอดลงตาราง "16 ขั้นตามผังงานจริง" แล้ว
@@ -29,9 +29,10 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
   จาก `Jobs.dc.html` (หน้าที่อนุมัติแล้ว) → **ทุกหน้าใช้ชุดเดียวกันเสมอ แก้ที่เดียว**
   · แก้หน้าไหนให้แก้ที่ `docs/design/bodies/<ชื่อ>.py` แล้วรัน `python3 _scaffold.py`
 - ⬜ ยังไม่มี: scaffold monorepo, contract files (`openapi.yaml`, `prisma/schema.prisma`, shared-types)
-- ⏭️ **ถัดไป:** ผู้ใช้รีวิวเฟส 1–2 → **ตอบคำถาม 🔴 Q1–Q4** (`01-requirements.md` §7) → เริ่ม **M0**
-  (git + monorepo + contract 3 ไฟล์ + CI + `npm run check`). **ห้ามเริ่ม migration แรกก่อนได้คำตอบ Q1–Q4**
-  เพราะกระทบ cardinality และฟิลด์ข้อมูลส่วนบุคคล (บทเรียน L2)
+- 📋 **handoff เต็ม (สถานะ · วิธีทำต่อ · ของที่ต้องแก้ก่อนใช้): [`docs/HANDOFF.md`](docs/HANDOFF.md)** — อ่านก่อนเริ่ม
+- ⏭️ **ถัดไป:** (1) ลูกค้ายืนยันต้นแบบ 16 หน้า → (2) **ตอบคำถาม 🔴 Q1–Q4** (`01-requirements.md` §7)
+  → (3) เริ่ม **M0** (monorepo + contract 3 ไฟล์ + CI + `npm run check`).
+  **ห้ามเริ่ม migration แรกก่อนได้คำตอบ Q1–Q4** เพราะกระทบ cardinality และฟิลด์ข้อมูลส่วนบุคคล (บทเรียน L2)
 
 ## What is being built
 
